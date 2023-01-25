@@ -40,6 +40,8 @@ resource "azurerm_portal_dashboard" "adf" {
 }
 
 resource "azurerm_application_insights_workbook" "databricks" {
+  count = var.law_id == "" ? 0 : 1
+  
   display_name        = "databricks-${var.env}-${var.location}"
   name                = random_uuid.databricks.result
   location            = var.location
@@ -51,6 +53,8 @@ resource "azurerm_application_insights_workbook" "databricks" {
 }
 
 resource "azurerm_portal_dashboard" "databricks" {
+  count = var.law_id == "" ? 0 : 1
+  
   name                = "databricks-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
