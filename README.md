@@ -2,31 +2,24 @@
 Terraform module for creation Azure Monitoring
 
 ## Usage
-This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and dashboard for Azure databricks, with already prepared json templates
+This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and dashboard for Azure databricks and Azure Data Factory
 ```
-resource "random_uuid" "databricks" {}
-
-resource "azurerm_application_insights_workbook" "databricks" {
-  display_name        = "databricks-${var.env}-${var.location}"
-  name                = random_uuid.databricks.result
-  location            = var.location
-  resource_group_name = var.resource_group
-
-  data_json = jsonencode(templatefile("../../modules/monitoring/json/databricks_workbook_template.tftpl", {
-    law_id = var.law_id
-  }))
+locals {
+  tags = {
+    environment = "development"
+  }
 }
 
-resource "azurerm_portal_dashboard" "databricks" {
-  name                = "databricks-${var.env}-${var.location}"
-  resource_group_name = var.resource_group
-  location            = var.location
+module "monitoring" {
+  source  = "data-platform-hq/monitoring/azurerm"
 
-  dashboard_properties = templatefile("../../modules/monitoring/json/databricks_dashboard_template.tftpl", {
-    law_id      = var.law_id,
-    workbook_id = azurerm_application_insights_workbook.databricks.id
-  })
-  depends_on = [azurerm_application_insights_workbook.databricks]
+  project                    = "datahq"
+  env                        = "dev"
+  location                   = "eastus"
+  tags                       = local.tags
+  resource_group             = "example"
+  azure_data_factory_id      = var.adf_enabled == true ? module.data_factory[0].id : ""
+  log_analytics_workspace_id = var.log_analytics_enabled == true ? module.log_analytics[0].log_analytics_workspace_id : ""
 }
 ```
 <!-- BEGIN_TF_DOCS -->
