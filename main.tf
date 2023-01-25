@@ -17,7 +17,7 @@ resource "azurerm_application_insights_workbook" "adf" {
   name                = random_uuid.adf.result
   location            = var.location
   resource_group_name = var.resource_group
-  tags = var.tags
+  tags                = var.tags
 
   data_json = jsonencode(templatefile("./json/adf_workbook_template.tftpl", {
     adf_id = var.adf_id,
@@ -31,7 +31,7 @@ resource "azurerm_portal_dashboard" "adf" {
   name                = "data-factory-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
-  tags = var.tags
+  tags                = var.tags
 
   dashboard_properties = templatefile("./json/adf_dashboard_template.tftpl", {
     adf_id        = var.adf_id,
@@ -48,7 +48,7 @@ resource "azurerm_application_insights_workbook" "databricks" {
   name                = random_uuid.databricks.result
   location            = var.location
   resource_group_name = var.resource_group
-  tags = var.tags
+  tags                = var.tags
 
   data_json = jsonencode(templatefile("./json/databricks_workbook_template.tftpl", {
     law_id = var.law_id
@@ -61,7 +61,7 @@ resource "azurerm_portal_dashboard" "databricks" {
   name                = "databricks-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
-  tags = var.tags
+  tags                = var.tags
 
   dashboard_properties = templatefile("./json/databricks_dashboard_template.tftpl", {
     law_id      = var.law_id,
