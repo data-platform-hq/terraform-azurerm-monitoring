@@ -1,0 +1,293 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL\r\n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| extend metricsns=columnifexists(\"Properties_spark_metrics_namespace_s\",Properties_spark_app_id_s)\r\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\r\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\r\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by JobID=Job_ID_d, bin(TimeGenerated,  1m)\r\n|top 5 by Latency desc nulls last\r\n| render table ",
+        "size": 0,
+        "title": "Top 5 Slow Jobs",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "TimeGenerated",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Latency",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 23,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 0"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## New workbook\n---\n\nWelcome to your new workbook.  This area will display text formatted as markdown.\n\n\nWe've included a basic analytics query to get you started. Use the `Edit` button below each section to configure it or add more sections."
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL \n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\n| summarize max(Completion_Time_d), min(Submission_Time_d) by Job_ID_d\n| extend Latency=max_Completion_Time_d-min_Submission_Time_d\n| project Job=Job_ID_d, Latency\n| top 5 by Latency desc nulls last\n| render table ",
+        "size": 1,
+        "title": "Top 5 Slow Jobs",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Latency",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 23,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 2",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL\r\n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\r\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by Job_ID_d, bin(TimeGenerated,  1m)\r\n| summarize ['25 percentile']=percentiles(Latency, 25), ['50 percentile']=percentiles(Latency, 50), ['75 percentile']=percentiles(Latency, 75), ['90 percentile']=percentiles(Latency, 90)  by bin(TimeGenerated,  1m)",
+        "size": 0,
+        "aggregation": 3,
+        "title": "Job Latency",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "areachart",
+        "chartSettings": {
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 23,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "query - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL\r\n//| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| project Stage_Info_Completion_Time_d, Stage_Info_Submission_Time_d, Stage_ID_d,Stage_Info_Stage_Name_s, Stage_Info_Stage_ID_d, TimeGenerated\r\n| summarize Latency=(max(Stage_Info_Completion_Time_d) - min(Stage_Info_Submission_Time_d)) by Stage_Info_Stage_ID_d, bin(TimeGenerated,  1m)\r\n| summarize ['25 percentile']=percentiles(Latency, 25), ['50 percentile']=percentiles(Latency, 50), ['75 percentile']=percentiles(Latency, 75), ['90 percentile']=percentiles(Latency, 90)  by bin(TimeGenerated,  1m)\r\n\r\n",
+        "size": 0,
+        "aggregation": 3,
+        "title": "Stage Latency",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "areachart",
+        "chartSettings": {
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 23,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "query - 3"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL\r\n| project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s, Task_Info_Finish_Time_d, TimeGenerated\r\n| extend Latency = Task_Info_Finish_Time_d-Task_Info_Launch_Time_d\r\n| project Task=Task_Info_Task_ID_d, Latency\r\n| top 5 by Latency desc nulls last\r\n| render table \r\n",
+        "size": 0,
+        "title": "Top 5 Slow Tasks",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Latency",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 23,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 4"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let results=SparkListenerEvent_CL\r\n| where  Event_s  contains \"SparkListenerStageSubmitted\"\r\n| extend metricsns=columnifexists(\"Properties_spark_metrics_namespace_s\",Properties_spark_app_id_s)\r\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\r\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\r\n| order by TimeGenerated asc  nulls last \r\n| join kind= inner (    SparkListenerEvent_CL\r\n    |  where Event_s contains \"SparkListenerStageCompleted\"  \r\n        | extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\r\n        results\r\n| extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \r\n| project Stage=Stage_Info_Stage_ID_d, Latency\r\n| top 5 by Latency desc nulls last\r\n| render table ",
+        "size": 0,
+        "title": "Top 5 Slow Stages",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Latency",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 23,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "query - 5"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SparkListenerEvent_CL\r\n| project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s, Task_Info_Finish_Time_d, TimeGenerated\r\n| extend TaskLatency = Task_Info_Finish_Time_d-Task_Info_Launch_Time_d\r\n| summarize percentiles(TaskLatency,25,50,75,90) by bin(TimeGenerated, 1m)\r\n| order by TimeGenerated asc nulls last",
+        "size": 0,
+        "aggregation": 3,
+        "title": "Task Latency",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "areachart",
+        "chartSettings": {
+          "xAxis": "TimeGenerated",
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 23,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "query - 6"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "//CPU Time Per Executor\nSparkMetric_CL\n| where name_s contains \"executor.cpuTime\"\n| extend sname = split(name_s, \".\")\n| extend executor=strcat(sname[0], \".\", sname[1])\n| project TimeGenerated, cpuTime=count_d / 100000\n| summarize ['AVG time']=avg(cpuTime), ['25 percentile']=percentile(cpuTime,25), ['50 percentile']=percentile(cpuTime,50), ['75 percentile']=percentile(cpuTime,75), ['90 percentile']=percentile(cpuTime,90) by bin(TimeGenerated,  1m)\n| order by TimeGenerated asc nulls last\n|render areachart\n\n",
+        "size": 0,
+        "aggregation": 3,
+        "title": "CPU Time Per Executor",
+        "color": "lightBlue",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "chartSettings": {
+          "xAxis": "TimeGenerated",
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 23,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "query - 7"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "//Sum Task Execution Per Host\nSparkListenerEvent_CL\n| where Event_s contains \"taskend\" \n| extend taskDuration=Task_Info_Finish_Time_d-Task_Info_Launch_Time_d \n| summarize ['Sum Task Execution / Minute']=sum(taskDuration) by bin(TimeGenerated,  1m), Task_Info_Host_s\n| order by TimeGenerated asc nulls last\n\n",
+        "size": 0,
+        "aggregation": 3,
+        "title": "Sum of Success Task Execution Per Host",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "areachart",
+        "chartSettings": {
+          "xAxis": "TimeGenerated",
+          "showLegend": true,
+          "seriesLabelSettings": [
+            {
+              "seriesName": "10.1.4.4",
+              "color": "blue"
+            },
+            {
+              "seriesName": "10.1.4.6",
+              "color": "magenta"
+            }
+          ],
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 23,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "query - 8"
+    }
+  ],
+  "fallbackResourceIds": [
+    "${law_id}"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
