@@ -3,11 +3,22 @@ Terraform module for creation Azure Monitoring
 
 ## Usage
 This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and dashboard for Azure databricks and Azure Data Factory
-```
+
+```hcl
 locals {
   tags = {
     environment = "development"
   }
+}
+
+data "azurerm_data_factory" "example" {
+  name                = "existing_adf"
+  resource_group_name = "example_rg"
+}
+
+data "azurerm_log_analytics_workspace" "example" {
+  name                = "existing_law"
+  resource_group_name = "example_rg"
 }
 
 module "monitoring" {
@@ -17,9 +28,9 @@ module "monitoring" {
   env                        = "dev"
   location                   = "eastus"
   tags                       = local.tags
-  resource_group             = "example"
-  azure_data_factory_id      = var.adf_enabled == true ? module.data_factory[0].id : ""
-  log_analytics_workspace_id = var.log_analytics_enabled == true ? module.log_analytics[0].log_analytics_workspace_id : ""
+  resource_group             = "example_rg"
+  azure_data_factory_id      = data.azurerm_data_factory.example.id
+  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.example.id
 }
 ```
 <!-- BEGIN_TF_DOCS -->
