@@ -14,7 +14,7 @@
         "queryType": 0,
         "resourceType": "microsoft.datafactory/factories",
         "crossComponentResources": [
-	    "${adf_id}"
+	        "${adf_id}"
         ]
       },
       "name": "query - 0"
@@ -32,7 +32,7 @@
         "queryType": 0,
         "resourceType": "microsoft.datafactory/factories",
         "crossComponentResources": [
-	      "${adf_id}"
+	        "${adf_id}"
 	    ],
         "visualization": "unstackedbar",
         "chartSettings": {
@@ -65,7 +65,9 @@
         },
         "queryType": 0,
         "resourceType": "microsoft.datafactory/factories",
-        "crossComponentResources": ${envs}
+        "crossComponentResources":[
+	        "${adf_id}"
+        ]
       },
       "name": "query - 2"
     },
@@ -81,7 +83,9 @@
         },
         "queryType": 0,
         "resourceType": "microsoft.datafactory/factories",
-        "crossComponentResources": ${envs}
+        "crossComponentResources": [
+	        "${adf_id}"
+        ]
       },
       "name": "query - 3"
     },

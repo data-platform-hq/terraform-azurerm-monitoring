@@ -1,9 +1,3 @@
-locals {
-  envs_list = length(var.cross_env) == 0 ? [var.adf_id] : tolist([for env in var.cross_env :
-    "/subscriptions/${data.azurerm_client_config.this.subscription_id}/resourceGroups/${var.project}-${env}-${var.location}/providers/Microsoft.DataFactory/factories/adf-${var.project}-${env}-${var.location}"
-  ])
-}
-
 data "azurerm_client_config" "this" {}
 
 resource "random_uuid" "adf" {}
@@ -11,7 +5,7 @@ resource "random_uuid" "adf" {}
 resource "random_uuid" "databricks" {}
 
 resource "azurerm_application_insights_workbook" "adf" {
-  count = var.adf_id == "" ? 0 : 1
+  count = length(var.adf_id) == 0 ? 0 : 1
 
   display_name        = "data-factory-${var.env}-${var.location}"
   name                = random_uuid.adf.result
@@ -20,13 +14,12 @@ resource "azurerm_application_insights_workbook" "adf" {
   tags                = var.tags
 
   data_json = jsonencode(templatefile("./json/adf_workbook_template.tftpl", {
-    adf_id = var.adf_id,
-    envs   = jsonencode(local.envs_list)
+    adf_id = var.adf_id
   }))
 }
 
 resource "azurerm_portal_dashboard" "adf" {
-  count = var.adf_id == "" ? 0 : 1
+  count = length(var.adf_id) == 0 ? 0 : 1
 
   name                = "data-factory-${var.env}-${var.location}"
   resource_group_name = var.resource_group
@@ -42,7 +35,7 @@ resource "azurerm_portal_dashboard" "adf" {
 }
 
 resource "azurerm_application_insights_workbook" "databricks" {
-  count = var.law_id == "" ? 0 : 1
+  count = length(var.law_id) == 0 ? 0 : 1
 
   display_name        = "databricks-${var.env}-${var.location}"
   name                = random_uuid.databricks.result
@@ -56,7 +49,7 @@ resource "azurerm_application_insights_workbook" "databricks" {
 }
 
 resource "azurerm_portal_dashboard" "databricks" {
-  count = var.law_id == "" ? 0 : 1
+  count = length(var.law_id) == 0 ? 0 : 1
 
   name                = "databricks-${var.env}-${var.location}"
   resource_group_name = var.resource_group
