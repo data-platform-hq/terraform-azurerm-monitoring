@@ -1,64 +1,64 @@
-data "azurerm_client_config" "this" {}
-
 resource "random_uuid" "adf" {}
 
 resource "random_uuid" "databricks" {}
 
-resource "azurerm_application_insights_workbook" "adf" {
-  count = length(var.adf_id) == 0 ? 0 : 1
+locals {
+  adf_name_to_id_map = { (var.adf_id) = "var.adf_id" }
+}
 
-  display_name        = "data-factory-${var.env}-${var.location}"
+resource "azurerm_application_insights_workbook" "adf" {
+  for_each = length(local.adf_name_to_id_map) == 0 ? {} : local.adf_name_to_id_map
+
+  display_name        = "data-factory-${var.project}-${var.env}-${var.location}"
   name                = random_uuid.adf.result
   location            = var.location
   resource_group_name = var.resource_group
   tags                = var.tags
 
-  data_json = jsonencode(templatefile("./json/adf_workbook_template.tftpl", {
-    adf_id = var.adf_id
+  data_json = jsonencode(templatefile("../../modules/monitoring/json/adf_workbook_template.tftpl", {
+    adf_id = each.value
   }))
 }
 
 resource "azurerm_portal_dashboard" "adf" {
-  count = length(var.adf_id) == 0 ? 0 : 1
+  for_each = length(local.adf_name_to_id_map) == 0 ? {} : local.adf_name_to_id_map
 
-  name                = "data-factory-${var.env}-${var.location}"
+  name                = "data-factory-${var.project}-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
   tags                = var.tags
 
-  dashboard_properties = templatefile("./json/adf_dashboard_template.tftpl", {
-    adf_id        = var.adf_id,
-    workbook_id   = azurerm_application_insights_workbook.adf[0].id,
-    workbook_name = azurerm_application_insights_workbook.adf[0].name
+  dashboard_properties = templatefile("../../modules/monitoring/json/adf_dashboard_template.tftpl", {
+    adf_id        = each.value,
+    workbook_id   = azurerm_application_insights_workbook.adf[each.key].id,
+    workbook_name = azurerm_application_insights_workbook.adf[each.key].name
   })
-  depends_on = [azurerm_application_insights_workbook.adf]
 }
 
 resource "azurerm_application_insights_workbook" "databricks" {
-  count = length(var.law_id) == 0 ? 0 : 1
+  for_each = length(var.name_to_id_map) == 0 ? {} : var.name_to_id_map
 
-  display_name        = "databricks-${var.env}-${var.location}"
+  display_name        = "databricks-${var.project}-${var.env}-${var.location}"
   name                = random_uuid.databricks.result
   location            = var.location
   resource_group_name = var.resource_group
   tags                = var.tags
 
-  data_json = jsonencode(templatefile("./json/databricks_workbook_template.tftpl", {
-    law_id = var.law_id
+  data_json = jsonencode(templatefile("../../modules/monitoring/json/databricks_workbook_template.tftpl", {
+    law_id = each.value
   }))
 }
 
 resource "azurerm_portal_dashboard" "databricks" {
-  count = length(var.law_id) == 0 ? 0 : 1
+  for_each = length(var.name_to_id_map) == 0 ? {} : var.name_to_id_map
 
-  name                = "databricks-${var.env}-${var.location}"
+  name                = "databricks-${var.project}-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
   tags                = var.tags
 
-  dashboard_properties = templatefile("./json/databricks_dashboard_template.tftpl", {
-    law_id      = var.law_id,
-    workbook_id = azurerm_application_insights_workbook.databricks[0].id
+  dashboard_properties = templatefile("../../modules/monitoring/json/databricks_dashboard_template.tftpl", {
+    law_id      = each.value,
+    workbook_id = azurerm_application_insights_workbook.databricks[each.key].id
   })
-  depends_on = [azurerm_application_insights_workbook.databricks]
 }

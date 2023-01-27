@@ -29,13 +29,7 @@ variable "adf_id" {
   description = "Azure Data Factory Id"
 }
 
-variable "cross_env" {
-  type        = list(string)
-  description = "List of env names to monitor with cross-environment dashboards"
-  default     = []
-}
-
-variable "law_id" {
-  type        = string
-  description = "Azure Log Analytics Id"
+variable "name_to_id_map" {
+  type        = map(any)
+  description = "Azure Log Analytics name to id map"
 }

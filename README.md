@@ -2,7 +2,7 @@
 Terraform module for creation Azure Monitoring
 
 ## Usage
-This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and dashboard for Azure databricks and Azure Data Factory
+This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and shared dashboard for Azure databricks and Azure Data Factory
 
 ```hcl
 locals {
@@ -57,7 +57,6 @@ No modules.
 
 | Name                                                                                                                                                    | Type     |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
-| [data.azurerm_client_config.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config)                     | resource |
 | [random_uuid.adf](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                                  | resource |
 | [random_uuid.databricks](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                           | resource |
 | [azurerm_application_insights_workbook.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template) | resource |
@@ -75,8 +74,7 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resource exists | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource | `map(string)` | {} | no |
 | <a name="input_adf_id"></a> [adf\_id](#input\_adf\_id) | Azure Data Factory Id | `string` | n/a | yes |
-| <a name="input_cross_env"></a> [cross\_env](#input\_cross\_env) | List of env names to monitor with cross-environment dashboards | `list(string)` | [] | no |
-| <a name="input_law_id"></a> [law\_id](#input\_law\_id) | Azure Log Analytics Id | `string` | n/a | yes |
+| <a name="input_name_to_id_map"></a> [name\_to\_id\_map](#input\_name\_to\_id\_map) | Azure Log Analytics name to id map | `map` | n/a | yes |
 
 ## Outputs
 
