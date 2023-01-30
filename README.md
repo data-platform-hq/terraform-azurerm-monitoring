@@ -1,5 +1,5 @@
 # Azure Monitoring Terraform module
-Terraform module for creation Azure Monitoring
+Terraform module for creation Azure Workbooks and Dashboards for Databricks and Data Factory
 
 ## Usage
 This module provides an ability to deploy Azure Dashboard and Workbook. Here is an example how to provision Azure workbook and shared dashboard for Azure databricks and Azure Data Factory
