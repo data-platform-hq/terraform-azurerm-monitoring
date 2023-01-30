@@ -27,9 +27,11 @@ variable "tags" {
 variable "adf_id" {
   type        = string
   description = "Azure Data Factory Id"
+  default     = ""
 }
 
 variable "log_analytics_workspace_id" {
   type        = string
   description = "Azure Log Analytics Workspace Id"
+  default     = ""
 }
