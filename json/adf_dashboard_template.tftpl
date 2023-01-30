@@ -1,0 +1,820 @@
+{
+  "lenses": {
+    "0": {
+      "order": 0,
+      "parts": {
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 15,
+            "rowSpan": 3
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineSucceededRuns",
+                        "aggregationType": 7,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Succeeded pipeline runs metrics"
+                        }
+                      },
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineFailedRuns",
+                        "aggregationType": 7,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Number of pipelines runs in success and failed",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 259200000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineSucceededRuns",
+                        "aggregationType": 7,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Succeeded pipeline runs metrics"
+                        }
+                      },
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineFailedRuns",
+                        "aggregationType": 7,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Number of pipelines runs in success and failed",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "local",
+                  "granularity": "auto",
+                  "relative": "4320m"
+                }
+              }
+            }
+          }
+        },
+        "1": {
+          "position": {
+            "x": 0,
+            "y": 3,
+            "colSpan": 15,
+            "rowSpan": 3
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "ActivityFailedRuns",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed activity runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Number of activity runs in failure",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 259200000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "ActivityFailedRuns",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed activity runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Number of activity runs in failure",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "utc",
+                  "granularity": "auto",
+                  "relative": "1440m"
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "position": {
+            "x": 0,
+            "y": 6,
+            "colSpan": 5,
+            "rowSpan": 3
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineFailedRuns",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Total Pipeline Failures",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 5,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 259200000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineFailedRuns",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Failed pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Total Pipeline Failures",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 5,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "sortIndex": 1,
+                      "sortOrder": 2,
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "3": {
+          "position": {
+            "x": 5,
+            "y": 6,
+            "colSpan": 5,
+            "rowSpan": 3
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineSucceededRuns",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Succeeded pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Total Pipeline Successes",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 5,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 259200000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+	    "id": "${adf_id}"
+                        },
+                        "name": "PipelineSucceededRuns",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.datafactory/factories",
+                        "metricVisualization": {
+                          "displayName": "Succeeded pipeline runs metrics"
+                        }
+                      }
+                    ],
+                    "title": "Total Pipeline Successes",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 5,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "position": {
+            "x": 0,
+            "y": 9,
+            "colSpan": 16,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "Azure Monitor"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+  "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "${workbook_name}",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"AzureActivity \\r\\n| extend d=parse_json(Properties)\\r\\n| extend statusCode=d.statusCode\\r\\n| where isnotempty(statusCode)\\r\\n| project statusCode, TimeGenerated\\r\\n| summarize count() by tostring(statusCode), bin(TimeGenerated, 1m)\\r\\n| render barchart \",\"size\":0,\"title\":\"Stucked time series bar chart grouped by status code\",\"timeContext\":{\"durationMs\":604800000},\"queryType\":0,\"resourceType\":\"microsoft.datafactory/factories\",\"crossComponentResources\":[\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-temp-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-temp-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-stage-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-stage-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-prod-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-prod-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dra-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dra-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dev-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dev-westeurope\"],\"visualization\":\"unstackedbar\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"yAxis\":[\"count_\"],\"ySettings\":{\"numberFormatSettings\":{\"unit\":0,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {},
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "5": {
+          "position": {
+            "x": 0,
+            "y": 14,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "Azure Monitor"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+  "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "${workbook_name}",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"AzureActivity \\n| where Level != 'Information'\\n| extend d=parse_json(Properties)\\n| extend statusCode=d.statusCode\\n| summarize count() by tostring(statusCode)\\n| render piechart \\n\\n\",\"size\":2,\"title\":\"Total count of errors by status code\",\"timeContext\":{\"durationMs\":604800000},\"queryType\":0,\"resourceType\":\"microsoft.datafactory/factories\",\"crossComponentResources\":[\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dra-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dra-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dev-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dev-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-prod-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-prod-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-stage-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-stage-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-temp-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-temp-westeurope\"]}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {},
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "6": {
+          "position": {
+            "x": 6,
+            "y": 14,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "Azure Monitor"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+  "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "${workbook_name}",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"AzureActivity\\r\\n| where Level != 'Information'\\r\\n| extend resource=parse_json(Properties_d).resource\\r\\n| extend s_resource = split(resource, \\\"/\\\")\\r\\n| extend Resource=s_resource[0] \\r\\n| where Resource contains \\\"adf\\\"\\r\\n| summarize ErrorRate=count() by tostring(Resource), TimeGenerated\\r\\n| order by TimeGenerated asc nulls last \\r\\n| render piechart \",\"size\":2,\"title\":\"Error rate by resource group\",\"timeContext\":{\"durationMs\":604800000},\"queryType\":0,\"resourceType\":\"microsoft.datafactory/factories\",\"crossComponentResources\":[\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dev-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dev-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dra-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dra-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-prod-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-prod-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-stage-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-stage-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-temp-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-temp-westeurope\"]}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {},
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "7": {
+          "position": {
+            "x": 0,
+            "y": 18,
+            "colSpan": 16,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "Azure Monitor"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+  "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "${workbook_name}",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"AzureActivity \\r\\n| where Level != 'Information' \\r\\n| extend errorMessage=parse_json(tostring(parse_json(Properties_d).statusMessage)).error.message \\r\\n| extend statusCode = parse_json(Properties_d).statusCode \\r\\n| extend resource=parse_json(Properties_d).resource \\r\\n| extend s_resource = split(resource, \\\"/\\\") \\r\\n| extend activity=s_resource[1] \\r\\n| project TimeGenerated, CallerIpAddress, ResourceGroup, ActivityStatusValue, ActivitySubstatusValue, errorMessage, statusCode, activity\\r\\n| render table \",\"size\":0,\"title\":\"Detailed table\",\"timeContext\":{\"durationMs\":604800000},\"queryType\":0,\"resourceType\":\"microsoft.datafactory/factories\",\"crossComponentResources\":[\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dev-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dev-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dra-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dra-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-prod-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-prod-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-stage-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-stage-westeurope\",\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-temp-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-temp-westeurope\"]}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {},
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "8": {
+          "position": {
+            "x": 0,
+            "y": 22,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "Azure Monitor"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+  "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "Azure Monitor",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "${workbook_name}",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"AzureActivity\\r\\n// | where Level != 'Information'\\r\\n| project Properties, Level\\r\\n| extend resource=parse_json(Properties).resourceGroup\\r\\n| summarize ErrorRate=count() by Level, tostring(resource)\\r\\n| where resource has \\\"dra\\\" and isnotempty(Level)\\r\\n| render piechart\",\"size\":2,\"title\":\"Error rate\",\"timeContext\":{\"durationMs\":604800000},\"queryType\":0,\"resourceType\":\"microsoft.datafactory/factories\",\"crossComponentResources\":[\"/subscriptions/edd8a3a7-929d-43c8-b550-f2525520b97b/resourceGroups/dpaf-dra-westeurope/providers/Microsoft.DataFactory/factories/adf-dpaf-dra-westeurope\"]}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {},
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
+        },
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "en-us"
+      }
+    }
+  }
+}

@@ -1,0 +1,567 @@
+{
+  "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 12,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": "${workbook_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": "Workbook 1",
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"SparkListenerEvent_CL\\r\\n| where  (Event_s  contains \\\"SparkListenerJobStart\\\") or (Event_s contains \\\"SparkListenerJobEnd\\\" and Job_Result_Result_s contains \\\"JobSucceeded\\\")\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\\r\\n| summarize duration=(max(Completion_Time_d) - min(Submission_Time_d)) by Job_ID_d, bin(TimeGenerated,  1m)\\r\\n| summarize ['25 percentile']=percentiles(duration, 25), ['50 percentile']=percentiles(duration, 50), ['75 percentile']=percentiles(duration, 75), ['90 percentile']=percentiles(duration, 90)  by bin(TimeGenerated,  1m)\\r\\n|render areachart\",\"size\":0,\"aggregation\":3,\"title\":\"Job Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "value": "westeurope",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+            }
+          },
+          "1": {
+            "position": {
+              "x": 12,
+              "y": 0,
+              "colSpan": 3,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": "${workbook_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": "Workbook 1",
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"SparkListenerEvent_CL\\r\\n| where  (Event_s  contains \\\"SparkListenerJobStart\\\") or (Event_s contains \\\"SparkListenerJobEnd\\\" and Job_Result_Result_s contains \\\"JobSucceeded\\\")\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\\r\\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by JobID=Job_ID_d, bin(TimeGenerated,  1m)\\r\\n|top 5 by Latency desc nulls last\\r\\n| render table \",\"size\":0,\"title\":\"Top 5 Slow Jobs\",\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"TimeGenerated\",\"formatter\":5},{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "value": "westeurope",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+            }
+          },
+          "2": {
+            "position": {
+              "x": 0,
+              "y": 4,
+              "colSpan": 12,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let results=SparkListenerEvent_CL\\r\\n|  where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (    SparkListenerEvent_CL\\r\\n    |  where Event_s contains \\\"SparkListenerStageCompleted\\\"  \\r\\n        | extend stageDuration=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\\r\\n        results\\r\\n         | extend slice = strcat(Properties_spark_databricks_clusterUsageTags_clusterName_s,\\\"-\\\",apptag,\\\" \\\",Stage_Info_Stage_Name_s) \\r\\n         | extend stageDuration=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \\r\\n         | summarize ['25 percentile']=percentiles(stageDuration,25), ['50 percentile']=percentiles(stageDuration,50),\\r\\n         ['75 percentile']=percentiles(stageDuration,75), ['90 percentile']=percentiles(stageDuration,90)  by bin(TimeGenerated,  1m)\\r\\n         | order by TimeGenerated asc nulls last\",\"size\":0,\"aggregation\":3,\"title\":\"Stage Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+            }
+          },
+          "3": {
+            "position": {
+              "x": 12,
+              "y": 4,
+              "colSpan": 3,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let results=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (    SparkListenerEvent_CL\\r\\n    |  where Event_s contains \\\"SparkListenerStageCompleted\\\"  \\r\\n        | extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\\r\\n        results\\r\\n| extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \\r\\n| project Stage=Stage_Info_Stage_ID_d, Latency\\r\\n| top 5 by Latency asc nulls last\\r\\n| render table \",\"size\":0,\"title\":\"Top 5 Slow Stages\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+            }
+          },
+          "4": {
+            "position": {
+              "x": 0,
+              "y": 8,
+              "colSpan": 12,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let result=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,Stage_Info_Stage_Name_s,apptag,Properties_spark_databricks_clusterUsageTags_clusterName_s,Event_s,TimeGenerated\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (\\r\\n    SparkListenerEvent_CL\\r\\n    | where Event_s contains \\\"SparkListenerTaskEnd\\\"\\r\\n    | where Task_End_Reason_Reason_s contains \\\"Success\\\"\\r\\n    | project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s,\\r\\n              Task_Info_Finish_Time_d\\r\\n              ) on $left.Stage_Info_Stage_ID_d == $right.Stage_ID_d;\\r\\nresult\\r\\n| extend TaskLatency =  Task_Info_Finish_Time_d - Task_Info_Launch_Time_d\\r\\n| extend slice=strcat(Properties_spark_databricks_clusterUsageTags_clusterName_s,\\\"-\\\",apptag ,\\\"-\\\",Stage_Info_Stage_Name_s)\\r\\n| summarize ['25 percentile']=percentile(TaskLatency,25), ['50 percentile']=percentile(TaskLatency,50), ['75 percentile']=percentile(TaskLatency,75), ['90 percentile']=percentile(TaskLatency,90)  by bin(TimeGenerated,  1m)\\r\\n| order by TimeGenerated asc nulls last\",\"size\":0,\"aggregation\":3,\"title\":\"Tasl Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
+              "partHeader": {
+                "title": "Task Latency",
+                "subtitle": ""
+              }
+            }
+          },
+          "5": {
+            "position": {
+              "x": 12,
+              "y": 8,
+              "colSpan": 3,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let result=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,Stage_Info_Stage_Name_s,apptag,Properties_spark_databricks_clusterUsageTags_clusterName_s,Event_s,TimeGenerated\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (\\r\\n    SparkListenerEvent_CL\\r\\n    | where Event_s contains \\\"SparkListenerTaskEnd\\\"\\r\\n    | where Task_End_Reason_Reason_s contains \\\"Success\\\"\\r\\n    | project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s,\\r\\n              Task_Info_Finish_Time_d\\r\\n              ) on $left.Stage_Info_Stage_ID_d == $right.Stage_ID_d;\\r\\nresult\\r\\n| extend Latency =  Task_Info_Finish_Time_d - Task_Info_Launch_Time_d\\r\\n| project Task=Task_Info_Task_ID_d, Latency\\r\\n| top 5 by Latency desc nulls last \\r\\n| render table \\r\\n\",\"size\":0,\"title\":\"Top 5 Slow Tasks\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+            }
+          },
+          "6": {
+            "position": {
+              "x": 0,
+              "y": 12,
+              "colSpan": 15,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": "${workbook_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": "Workbook 1",
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"//CPU Time Per Executor\\nSparkMetric_CL\\n| where name_s contains \\\"executor.cpuTime\\\"\\n| extend sname = split(name_s, \\\".\\\")\\n| extend executor=strcat(sname[0], \\\".\\\", sname[1])\\n| project TimeGenerated, cpuTime=count_d / 100000\\n| summarize ['AVG time']=avg(cpuTime), ['25 percentile']=percentile(cpuTime,25), ['50 percentile']=percentile(cpuTime,50), ['75 percentile']=percentile(cpuTime,75), ['90 percentile']=percentile(cpuTime,90) by bin(TimeGenerated,  1m)\\n| order by TimeGenerated asc nulls last\\n|render areachart\\n\\n\",\"size\":0,\"aggregation\":3,\"title\":\"CPU Time Per Executor\",\"color\":\"lightBlue\",\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"chartSettings\":{\"xSettings\":{\"numberFormatSettings\":{\"unit\":0,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}},\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "value": "westeurope",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1h"
+                  }
+                }
+              },
+              "partHeader": {
+                "title": "CPU Time Per Executor",
+                "subtitle": ""
+              }
+            }
+          },
+          "7": {
+            "position": {
+              "x": 0,
+              "y": 16,
+              "colSpan": 15,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "${law_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "TimeContext",
+                  "value": null,
+                  "isOptional": true
+                },
+                {
+                  "name": "ResourceIds",
+                  "value": [
+                    "${law_id}"
+                  ],
+                  "isOptional": true
+                },
+                {
+                  "name": "ConfigurationId",
+                  "value": "${workbook_id}",
+                  "isOptional": true
+                },
+                {
+                  "name": "Type",
+                  "value": "workbook",
+                  "isOptional": true
+                },
+                {
+                  "name": "GalleryResourceType",
+                  "value": "microsoft.operationalinsights/workspaces",
+                  "isOptional": true
+                },
+                {
+                  "name": "PinName",
+                  "value": "Workbook 1",
+                  "isOptional": true
+                },
+                {
+                  "name": "StepSettings",
+                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"//Sum Task Execution Per Host\\nSparkListenerEvent_CL\\n| where Event_s contains \\\"taskend\\\" \\n| extend taskDuration=Task_Info_Finish_Time_d-Task_Info_Launch_Time_d \\n| summarize ['Sum Task Execution / Minute']=sum(taskDuration) by bin(TimeGenerated,  1m), Task_Info_Host_s\\n| order by TimeGenerated asc nulls last\\n\\n\",\"size\":0,\"aggregation\":3,\"title\":\"Sum of Success Task Execution Per Host\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"showLegend\":true,\"seriesLabelSettings\":[{\"seriesName\":\"10.1.4.4\",\"color\":\"blue\"},{\"seriesName\":\"10.1.4.6\",\"color\":\"magenta\"}],\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "isOptional": true
+                },
+                {
+                  "name": "ParameterValues",
+                  "value": {},
+                  "isOptional": true
+                },
+                {
+                  "name": "Location",
+                  "value": "westeurope",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1h"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        },
+        "filterLocale": {
+          "value": "en-us"
+        }
+      }
+    }
+}
