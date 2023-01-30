@@ -31,5 +31,5 @@ variable "adf_id" {
 
 variable "log_analytics_workspace_id" {
   type        = string
-  description = "Azure Log Analytics name to id map"
+  description = "Azure Log Analytics Workspace Id"
 }
