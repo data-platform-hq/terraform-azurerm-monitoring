@@ -5,7 +5,7 @@ resource "random_uuid" "databricks" {}
 resource "azurerm_application_insights_workbook" "adf" {
   count = length(var.adf_id) == 0 ? 0 : 1
 
-  display_name        = "data-factory-${var.env}-${var.location}"
+  display_name        = "data-factory-${var.project}-${var.env}-${var.location}"
   name                = random_uuid.adf.result
   location            = var.location
   resource_group_name = var.resource_group
@@ -19,7 +19,7 @@ resource "azurerm_application_insights_workbook" "adf" {
 resource "azurerm_portal_dashboard" "adf" {
   count = length(var.adf_id) == 0 ? 0 : 1
 
-  name                = "data-factory-${var.env}-${var.location}"
+  name                = "data-factory-${var.project}-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
   tags                = var.tags
@@ -35,7 +35,7 @@ resource "azurerm_portal_dashboard" "adf" {
 resource "azurerm_application_insights_workbook" "databricks" {
   count = length(var.log_analytics_workspace_id) == 0 ? 0 : 1
 
-  display_name        = "databricks-${var.env}-${var.location}"
+  display_name        = "databricks-${var.project}-${var.env}-${var.location}"
   name                = random_uuid.databricks.result
   location            = var.location
   resource_group_name = var.resource_group
@@ -49,7 +49,7 @@ resource "azurerm_application_insights_workbook" "databricks" {
 resource "azurerm_portal_dashboard" "databricks" {
   count = length(var.log_analytics_workspace_id) == 0 ? 0 : 1
 
-  name                = "databricks-${var.env}-${var.location}"
+  name                = "databricks-${var.project}-${var.env}-${var.location}"
   resource_group_name = var.resource_group
   location            = var.location
   tags                = var.tags
