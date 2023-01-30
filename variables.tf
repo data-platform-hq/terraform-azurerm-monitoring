@@ -29,7 +29,7 @@ variable "adf_id" {
   description = "Azure Data Factory Id"
 }
 
-variable "name_to_id_map" {
-  type        = map(any)
+variable "log_analytics_workspace_id" {
+  type        = string
   description = "Azure Log Analytics name to id map"
 }

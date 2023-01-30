@@ -74,7 +74,7 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resource exists | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource | `map(string)` | {} | no |
 | <a name="input_adf_id"></a> [adf\_id](#input\_adf\_id) | Azure Data Factory Id | `string` | n/a | yes |
-| <a name="input_name_to_id_map"></a> [name\_to\_id\_map](#input\_name\_to\_id\_map) | Azure Log Analytics name to id map | `map` | n/a | yes |
+| <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | Azure Log Analytics name to id map | `string` | n/a | yes |
 
 ## Outputs
 
