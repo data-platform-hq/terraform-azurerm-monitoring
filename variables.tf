@@ -27,9 +27,11 @@ variable "tags" {
 variable "adf_map" {
   type        = map(string)
   description = "Azure Data Factory name to id map"
+  default     = {}
 }
 
 variable "log_analytics_workspace_map" {
   type        = map(string)
   description = "Azure Log Analytics name to id map"
+  default     = {}
 }
