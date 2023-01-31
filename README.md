@@ -73,8 +73,8 @@ No modules.
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | The name of the resource group in which resources is created | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resource exists | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource | `map(string)` | {} | no |
-| <a name="input_adf_map"></a> [adf\_map](#input\_adf\_map) | Azure Data Factory name to id map | `map(string)` | n/a | yes |
-| <a name="input_log_analytics_workspace_map"></a> [log\_analytics\_workspace\_map](#input\_log\_analytics\_workspace\_map) | Azure Log Analytics name to id map | `map(string)` | n/a | yes |
+| <a name="input_adf_map"></a> [adf\_map](#input\_adf\_map) | Azure Data Factory name to id map | `map(string)` | {} | no |
+| <a name="input_log_analytics_workspace_map"></a> [log\_analytics\_workspace\_map](#input\_log\_analytics\_workspace\_map) | Azure Log Analytics name to id map | `map(string)` | {} | no |
 
 ## Outputs
 
