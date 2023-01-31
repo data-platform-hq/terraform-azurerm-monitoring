@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.0.0...v1.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* add default value to variables ([940e02a](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/940e02afb63d774e63bb1c3cd71a4fa2322e1948))
+* moinitoring ([e2616d0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/e2616d0e5d46137e41876a7bfcb260ecc33ce34c))
+* terraform fmt ([d0ddc75](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/d0ddc75226120c83953f051c2224ffb2ec3f7e51))
+
 # 1.0.0 (2023-01-30)
 
 
