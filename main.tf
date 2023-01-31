@@ -56,7 +56,7 @@ resource "azurerm_portal_dashboard" "databricks" {
   tags                = var.tags
 
   dashboard_properties = templatefile("${path.module}/json/databricks_dashboard_template.tftpl", {
-    law_id = each.value,
+    law_id      = each.value,
     workbook_id = azurerm_application_insights_workbook.databricks[each.key].id
   })
 
