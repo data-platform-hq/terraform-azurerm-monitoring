@@ -7,466 +7,798 @@
             "position": {
               "x": 0,
               "y": 0,
-              "colSpan": 12,
+              "colSpan": 8,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "8d745b68-5665-4a03-b140-db5113122493",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": "${workbook_id}",
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P7D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": "Workbook 1",
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"SparkListenerEvent_CL\\r\\n| where  (Event_s  contains \\\"SparkListenerJobStart\\\") or (Event_s contains \\\"SparkListenerJobEnd\\\" and Job_Result_Result_s contains \\\"JobSucceeded\\\")\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\\r\\n| summarize duration=(max(Completion_Time_d) - min(Submission_Time_d)) by Job_ID_d, bin(TimeGenerated,  1m)\\r\\n| summarize ['25 percentile']=percentiles(duration, 25), ['50 percentile']=percentiles(duration, 50), ['75 percentile']=percentiles(duration, 75), ['90 percentile']=percentiles(duration, 90)  by bin(TimeGenerated,  1m)\\r\\n|render areachart\",\"size\":0,\"aggregation\":3,\"title\":\"Job Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "name": "Query",
+                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render barchart \n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "FrameControlChart",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
-                  "value": "westeurope",
+                  "name": "SpecificChart",
+                  "value": "StackedColumn",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "Errors",
+                        "type": "long"
+                      }
+                    ],
+                    "splitBy": [],
+                    "aggregation": "Sum"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "value": {
+                    "isEnabled": true,
+                    "position": "Bottom"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "Query": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render barchart \n\n"
+                }
+              },
+              "partHeader": {
+                "title": "Jobs",
+                "subtitle": ""
+              }
             }
           },
           "1": {
             "position": {
-              "x": 12,
+              "x": 8,
               "y": 0,
-              "colSpan": 3,
+              "colSpan": 8,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "146a575a-156e-4fda-87a1-5d34212c106d",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": "${workbook_id}",
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P7D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": "Workbook 1",
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"SparkListenerEvent_CL\\r\\n| where  (Event_s  contains \\\"SparkListenerJobStart\\\") or (Event_s contains \\\"SparkListenerJobEnd\\\" and Job_Result_Result_s contains \\\"JobSucceeded\\\")\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\\r\\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by JobID=Job_ID_d, bin(TimeGenerated,  1m)\\r\\n|top 5 by Latency desc nulls last\\r\\n| render table \",\"size\":0,\"title\":\"Top 5 Slow Jobs\",\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"TimeGenerated\",\"formatter\":5},{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "name": "Query",
+                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "FrameControlChart",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
-                  "value": "westeurope",
+                  "name": "SpecificChart",
+                  "value": "StackedColumn",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "count_",
+                        "type": "long"
+                      }
+                    ],
+                    "splitBy": [
+                      {
+                        "name": "Status Code",
+                        "type": "string"
+                      }
+                    ],
+                    "aggregation": "Sum"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "value": {
+                    "isEnabled": true,
+                    "position": "Bottom"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "Query": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n\n"
+                }
+              },
+              "partHeader": {
+                "title": "Jobs Group By Status Code",
+                "subtitle": ""
+              }
             }
           },
           "2": {
             "position": {
               "x": 0,
               "y": 4,
-              "colSpan": 12,
-              "rowSpan": 4
+              "colSpan": 16,
+              "rowSpan": 3
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "10d7b5f3-1c16-4abc-9637-42896f146407",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": null,
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P3D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": null,
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let results=SparkListenerEvent_CL\\r\\n|  where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (    SparkListenerEvent_CL\\r\\n    |  where Event_s contains \\\"SparkListenerStageCompleted\\\"  \\r\\n        | extend stageDuration=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\\r\\n        results\\r\\n         | extend slice = strcat(Properties_spark_databricks_clusterUsageTags_clusterName_s,\\\"-\\\",apptag,\\\" \\\",Stage_Info_Stage_Name_s) \\r\\n         | extend stageDuration=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \\r\\n         | summarize ['25 percentile']=percentiles(stageDuration,25), ['50 percentile']=percentiles(stageDuration,50),\\r\\n         ['75 percentile']=percentiles(stageDuration,75), ['90 percentile']=percentiles(stageDuration,90)  by bin(TimeGenerated,  1m)\\r\\n         | order by TimeGenerated asc nulls last\",\"size\":0,\"aggregation\":3,\"title\":\"Stage Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "name": "Query",
+                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend ClusterID=rp.clusterId\n| extend [\"Job State\"]=rp.clusterState\n| extend [\"Job Id\"]=rp.jobId\n| extend [\"Cluster Id\"]=rp.clusterId\n| project TimeGenerated, [\"Job Id\"], [\"Cluster Id\"], [\"Status Code\"], [\"Error Message\"], ActionName\n| render table \n\n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "AnalyticsGrid",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
+                  "name": "SpecificChart",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "GridColumnsWidth": {
+                    "Cluster Id": "184px",
+                    "Error Message": "598px"
+                  }
+                }
+              },
+              "partHeader": {
+                "title": "Jobs Error",
+                "subtitle": ""
+              }
             }
           },
           "3": {
             "position": {
-              "x": 12,
-              "y": 4,
-              "colSpan": 3,
+              "x": 0,
+              "y": 7,
+              "colSpan": 9,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "3d6d5984-ff28-4a53-b91a-eac173ce7bc5",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": null,
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P7D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": null,
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let results=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (    SparkListenerEvent_CL\\r\\n    |  where Event_s contains \\\"SparkListenerStageCompleted\\\"  \\r\\n        | extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\\r\\n        results\\r\\n| extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \\r\\n| project Stage=Stage_Info_Stage_ID_d, Latency\\r\\n| top 5 by Latency asc nulls last\\r\\n| render table \",\"size\":0,\"title\":\"Top 5 Slow Stages\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "name": "Query",
+                  "value": "DatabricksJobs \n| where (ActionName contains \"runStart\") or (ActionName contains \"runFailed\") or (ActionName contains \"runSucceded\") \n| extend r=parse_json(RequestParams)\n| extend jobId=r.jobId, clusterId=r.clusterId, runId=r.runId\n| project TimeGenerated, ActionName, jobId, clusterId, runId, Response, RequestParams\n| summarize d=(max(TimeGenerated) - min(TimeGenerated)) by tostring(runId), bin(TimeGenerated, 1d)\n| extend [\"duration, s\"]=(todecimal(d)/10000000)\n| render areachart \n\n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "FrameControlChart",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
+                  "name": "SpecificChart",
+                  "value": "StackedArea",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "duration, s",
+                        "type": "decimal"
+                      }
+                    ],
+                    "splitBy": [
+                      {
+                        "name": "runId",
+                        "type": "string"
+                      }
+                    ],
+                    "aggregation": "Sum"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "value": {
+                    "isEnabled": true,
+                    "position": "Bottom"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {},
+              "partHeader": {
+                "title": "Jobs Duration",
+                "subtitle": ""
+              }
             }
           },
           "4": {
             "position": {
               "x": 0,
-              "y": 8,
-              "colSpan": 12,
+              "y": 11,
+              "colSpan": 8,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "7d4b3833-26f1-4fe3-a352-c9e422a6a32b",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": null,
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P3D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": null,
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let result=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,Stage_Info_Stage_Name_s,apptag,Properties_spark_databricks_clusterUsageTags_clusterName_s,Event_s,TimeGenerated\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (\\r\\n    SparkListenerEvent_CL\\r\\n    | where Event_s contains \\\"SparkListenerTaskEnd\\\"\\r\\n    | where Task_End_Reason_Reason_s contains \\\"Success\\\"\\r\\n    | project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s,\\r\\n              Task_Info_Finish_Time_d\\r\\n              ) on $left.Stage_Info_Stage_ID_d == $right.Stage_ID_d;\\r\\nresult\\r\\n| extend TaskLatency =  Task_Info_Finish_Time_d - Task_Info_Launch_Time_d\\r\\n| extend slice=strcat(Properties_spark_databricks_clusterUsageTags_clusterName_s,\\\"-\\\",apptag ,\\\"-\\\",Stage_Info_Stage_Name_s)\\r\\n| summarize ['25 percentile']=percentile(TaskLatency,25), ['50 percentile']=percentile(TaskLatency,50), ['75 percentile']=percentile(TaskLatency,75), ['90 percentile']=percentile(TaskLatency,90)  by bin(TimeGenerated,  1m)\\r\\n| order by TimeGenerated asc nulls last\",\"size\":0,\"aggregation\":3,\"title\":\"Tasl Latency\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "name": "Query",
+                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 1m)\n| render barchart \n\n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "FrameControlChart",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
+                  "name": "SpecificChart",
+                  "value": "StackedColumn",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "Errors",
+                        "type": "long"
+                      }
+                    ],
+                    "splitBy": [],
+                    "aggregation": "Sum"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "value": {
+                    "isEnabled": true,
+                    "position": "Bottom"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "Query": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render columnchart  \n\n"
+                }
+              },
               "partHeader": {
-                "title": "Task Latency",
+                "title": "Clusters",
                 "subtitle": ""
               }
             }
           },
           "5": {
             "position": {
-              "x": 12,
-              "y": 8,
-              "colSpan": 3,
+              "x": 8,
+              "y": 11,
+              "colSpan": 8,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "12ffc4e3-6d4d-4b27-8e61-2b2afc8f550c",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": null,
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P3D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": null,
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"let result=SparkListenerEvent_CL\\r\\n| where  Event_s  contains \\\"SparkListenerStageSubmitted\\\"\\r\\n| extend metricsns=columnifexists(\\\"Properties_spark_metrics_namespace_s\\\",Properties_spark_app_id_s)\\r\\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\\r\\n| project Stage_Info_Stage_ID_d,Stage_Info_Stage_Name_s,apptag,Properties_spark_databricks_clusterUsageTags_clusterName_s,Event_s,TimeGenerated\\r\\n| order by TimeGenerated asc  nulls last \\r\\n| join kind= inner (\\r\\n    SparkListenerEvent_CL\\r\\n    | where Event_s contains \\\"SparkListenerTaskEnd\\\"\\r\\n    | where Task_End_Reason_Reason_s contains \\\"Success\\\"\\r\\n    | project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s,\\r\\n              Task_Info_Finish_Time_d\\r\\n              ) on $left.Stage_Info_Stage_ID_d == $right.Stage_ID_d;\\r\\nresult\\r\\n| extend Latency =  Task_Info_Finish_Time_d - Task_Info_Launch_Time_d\\r\\n| project Task=Task_Info_Task_ID_d, Latency\\r\\n| top 5 by Latency desc nulls last \\r\\n| render table \\r\\n\",\"size\":0,\"title\":\"Top 5 Slow Tasks\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"Latency\",\"formatter\":0,\"numberFormat\":{\"unit\":23,\"options\":{\"style\":\"decimal\"}}}]}}",
+                  "name": "Query",
+                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "FrameControlChart",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
+                  "name": "SpecificChart",
+                  "value": "StackedColumn",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "count_",
+                        "type": "long"
+                      }
+                    ],
+                    "splitBy": [
+                      {
+                        "name": "Status Code",
+                        "type": "string"
+                      }
+                    ],
+                    "aggregation": "Sum"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "value": {
+                    "isEnabled": true,
+                    "position": "Bottom"
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {},
+              "partHeader": {
+                "title": "Clusters Group By Status Code",
+                "subtitle": ""
+              }
             }
           },
           "6": {
             "position": {
               "x": 0,
-              "y": 12,
-              "colSpan": 15,
-              "rowSpan": 4
+              "y": 15,
+              "colSpan": 16,
+              "rowSpan": 3
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "4267ad01-a950-4584-8951-9264f10b00a4",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": "${workbook_id}",
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P1D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": "Workbook 1",
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"//CPU Time Per Executor\\nSparkMetric_CL\\n| where name_s contains \\\"executor.cpuTime\\\"\\n| extend sname = split(name_s, \\\".\\\")\\n| extend executor=strcat(sname[0], \\\".\\\", sname[1])\\n| project TimeGenerated, cpuTime=count_d / 100000\\n| summarize ['AVG time']=avg(cpuTime), ['25 percentile']=percentile(cpuTime,25), ['50 percentile']=percentile(cpuTime,50), ['75 percentile']=percentile(cpuTime,75), ['90 percentile']=percentile(cpuTime,90) by bin(TimeGenerated,  1m)\\n| order by TimeGenerated asc nulls last\\n|render areachart\\n\\n\",\"size\":0,\"aggregation\":3,\"title\":\"CPU Time Per Executor\",\"color\":\"lightBlue\",\"timeContext\":{\"durationMs\":86400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"chartSettings\":{\"xSettings\":{\"numberFormatSettings\":{\"unit\":0,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}},\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "name": "Query",
+                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend ClusterID=rp.clusterId\n| extend [\"Cluster State\"]=rp.clusterState\n| extend [\"Cluster Name\"]=rp.clusterName\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], [\"Cluster State\"], [\"Cluster Name\"]\n| render table \n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "AnalyticsGrid",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
-                  "value": "westeurope",
+                  "name": "SpecificChart",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
-              "filters": {
-                "MsPortalFx_TimeRange": {
-                  "model": {
-                    "format": "local",
-                    "granularity": "auto",
-                    "relative": "1h"
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "GridColumnsWidth": {
+                    "Error Message": "627px"
                   }
                 }
               },
               "partHeader": {
-                "title": "CPU Time Per Executor",
+                "title": "Clusters Error",
                 "subtitle": ""
               }
             }
@@ -474,80 +806,109 @@
           "7": {
             "position": {
               "x": 0,
-              "y": 16,
-              "colSpan": 15,
+              "y": 18,
+              "colSpan": 13,
               "rowSpan": 4
             },
             "metadata": {
               "inputs": [
                 {
+                  "name": "resourceTypeMode",
+                  "isOptional": true
+                },
+                {
                   "name": "ComponentId",
-                  "value": "${law_id}",
                   "isOptional": true
                 },
                 {
-                  "name": "TimeContext",
-                  "value": null,
+                  "name": "Scope",
+                  "value": {
+                    "resourceIds": [
+                      "${law_id}"
+                    ]
+                  },
                   "isOptional": true
                 },
                 {
-                  "name": "ResourceIds",
-                  "value": [
-                    "${law_id}"
-                  ],
+                  "name": "PartId",
+                  "value": "9ee0d9fc-31d5-490e-9724-09ec38a0f738",
                   "isOptional": true
                 },
                 {
-                  "name": "ConfigurationId",
-                  "value": "${workbook_id}",
+                  "name": "Version",
+                  "value": "2.0",
                   "isOptional": true
                 },
                 {
-                  "name": "Type",
-                  "value": "workbook",
+                  "name": "TimeRange",
+                  "value": "P1D",
                   "isOptional": true
                 },
                 {
-                  "name": "GalleryResourceType",
-                  "value": "microsoft.operationalinsights/workspaces",
+                  "name": "DashboardId",
                   "isOptional": true
                 },
                 {
-                  "name": "PinName",
-                  "value": "Workbook 1",
+                  "name": "DraftRequestParameters",
                   "isOptional": true
                 },
                 {
-                  "name": "StepSettings",
-                  "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"//Sum Task Execution Per Host\\nSparkListenerEvent_CL\\n| where Event_s contains \\\"taskend\\\" \\n| extend taskDuration=Task_Info_Finish_Time_d-Task_Info_Launch_Time_d \\n| summarize ['Sum Task Execution / Minute']=sum(taskDuration) by bin(TimeGenerated,  1m), Task_Info_Host_s\\n| order by TimeGenerated asc nulls last\\n\\n\",\"size\":0,\"aggregation\":3,\"title\":\"Sum of Success Task Execution Per Host\",\"timeContext\":{\"durationMs\":14400000},\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"areachart\",\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"showLegend\":true,\"seriesLabelSettings\":[{\"seriesName\":\"10.1.4.4\",\"color\":\"blue\"},{\"seriesName\":\"10.1.4.6\",\"color\":\"magenta\"}],\"ySettings\":{\"numberFormatSettings\":{\"unit\":23,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                  "name": "Query",
+                  "value": "DatabricksAccounts \n| extend an=parse_json(Response)\n| extend [\"Status Code\"]=an.statusCode\n| extend [\"Error Message\"]=an.errorMessage\n| where [\"Status Code\"] >= 400\n| extend rp=parse_json(RequestParams)\n| extend Path=rp.path\n| extend UserID=rp.userId\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], SourceIPAddress, Path, UserID\n| render table \n",
                   "isOptional": true
                 },
                 {
-                  "name": "ParameterValues",
-                  "value": {},
+                  "name": "ControlType",
+                  "value": "AnalyticsGrid",
                   "isOptional": true
                 },
                 {
-                  "name": "Location",
-                  "value": "westeurope",
+                  "name": "SpecificChart",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics",
+                  "isOptional": true
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "law-dpaf2-dev-eastus",
+                  "isOptional": true
+                },
+                {
+                  "name": "Dimensions",
+                  "isOptional": true
+                },
+                {
+                  "name": "LegendOptions",
+                  "isOptional": true
+                },
+                {
+                  "name": "IsQueryContainTimeRange",
+                  "value": false,
                   "isOptional": true
                 }
               ],
-              "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart",
-              "filters": {
-                "MsPortalFx_TimeRange": {
-                  "model": {
-                    "format": "local",
-                    "granularity": "auto",
-                    "relative": "1h"
-                  }
+              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+              "settings": {
+                "content": {
+                  "GridColumnsWidth": {
+                    "Error Message": "194px"
+                  },
+                  "Query": "DatabricksAccounts \n| extend an=parse_json(Response)\n| extend [\"Status Code\"]=an.statusCode\n| extend [\"Error Message\"]=an.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend Path=rp.path\n| extend UserID=rp.userId\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], SourceIPAddress, Path, UserID\n| render table \n\n"
                 }
+              },
+              "partHeader": {
+                "title": "Accounts Error",
+                "subtitle": ""
               }
             }
           }
         }
       }
     },
+
     "metadata": {
       "model": {
         "timeRange": {
@@ -564,4 +925,5 @@
         }
       }
     }
+
 }

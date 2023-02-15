@@ -33,20 +33,6 @@ resource "azurerm_portal_dashboard" "adf" {
   depends_on = [azurerm_application_insights_workbook.adf]
 }
 
-resource "azurerm_application_insights_workbook" "databricks" {
-  for_each = var.log_analytics_workspace_map
-
-  display_name        = "databricks-${var.project}-${var.env}-${var.location}"
-  name                = random_uuid.databricks.result
-  location            = var.location
-  resource_group_name = var.resource_group
-  tags                = var.tags
-
-  data_json = jsonencode(templatefile("${path.module}/json/databricks_workbook_template.tftpl", {
-    law_id = each.value
-  }))
-}
-
 resource "azurerm_portal_dashboard" "databricks" {
   for_each = var.log_analytics_workspace_map
 
@@ -56,9 +42,6 @@ resource "azurerm_portal_dashboard" "databricks" {
   tags                = var.tags
 
   dashboard_properties = templatefile("${path.module}/json/databricks_dashboard_template.tftpl", {
-    law_id      = each.value,
-    workbook_id = azurerm_application_insights_workbook.databricks[each.key].id
+    law_id = each.value
   })
-
-  depends_on = [azurerm_application_insights_workbook.databricks]
 }
