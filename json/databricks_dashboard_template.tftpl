@@ -1,929 +1,1645 @@
 {
   "lenses": {
-      "0": {
-        "order": 0,
-        "parts": {
-          "0": {
-            "position": {
-              "x": 0,
-              "y": 0,
-              "colSpan": 8,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "8d745b68-5665-4a03-b140-db5113122493",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P7D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render barchart \n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "FrameControlChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "value": "StackedColumn",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "value": {
-                    "xAxis": {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
-                    },
-                    "yAxis": [
-                      {
-                        "name": "Errors",
-                        "type": "long"
-                      }
-                    ],
-                    "splitBy": [],
-                    "aggregation": "Sum"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "value": {
-                    "isEnabled": true,
-                    "position": "Bottom"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "Query": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render barchart \n\n"
-                }
-              },
-              "partHeader": {
-                "title": "Jobs",
-                "subtitle": ""
-              }
-            }
+    "0": {
+      "order": 0,
+      "parts": {
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 16,
+            "rowSpan": 1
           },
-          "1": {
-            "position": {
-              "x": 8,
-              "y": 0,
-              "colSpan": 8,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "146a575a-156e-4fda-87a1-5d34212c106d",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P7D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "FrameControlChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "value": "StackedColumn",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "value": {
-                    "xAxis": {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
-                    },
-                    "yAxis": [
-                      {
-                        "name": "count_",
-                        "type": "long"
-                      }
-                    ],
-                    "splitBy": [
-                      {
-                        "name": "Status Code",
-                        "type": "string"
-                      }
-                    ],
-                    "aggregation": "Sum"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "value": {
-                    "isEnabled": true,
-                    "position": "Bottom"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "Query": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n\n"
-                }
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
               },
-              "partHeader": {
-                "title": "Jobs Group By Status Code",
-                "subtitle": ""
-              }
-            }
-          },
-          "2": {
-            "position": {
-              "x": 0,
-              "y": 4,
-              "colSpan": 16,
-              "rowSpan": 3
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"json\":\"## Jobs\\n---\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
                   },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "10d7b5f3-1c16-4abc-9637-42896f146407",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P3D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend ClusterID=rp.clusterId\n| extend [\"Job State\"]=rp.clusterState\n| extend [\"Job Id\"]=rp.jobId\n| extend [\"Cluster Id\"]=rp.clusterId\n| project TimeGenerated, [\"Job Id\"], [\"Cluster Id\"], [\"Status Code\"], [\"Error Message\"], ActionName\n| render table \n\n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "AnalyticsGrid",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "GridColumnsWidth": {
-                    "Cluster Id": "184px",
-                    "Error Message": "598px"
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
                   }
-                }
+                },
+                "isOptional": true
               },
-              "partHeader": {
-                "title": "Jobs Error",
-                "subtitle": ""
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
               }
-            }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookTextPart"
+          }
+        },
+        "1": {
+          "position": {
+            "x": 0,
+            "y": 1,
+            "colSpan": 8,
+            "rowSpan": 5
           },
-          "3": {
-            "position": {
-              "x": 0,
-              "y": 7,
-              "colSpan": 9,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "3d6d5984-ff28-4a53-b91a-eac173ce7bc5",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P7D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksJobs \n| where (ActionName contains \"runStart\") or (ActionName contains \"runFailed\") or (ActionName contains \"runSucceded\") \n| extend r=parse_json(RequestParams)\n| extend jobId=r.jobId, clusterId=r.clusterId, runId=r.runId\n| project TimeGenerated, ActionName, jobId, clusterId, runId, Response, RequestParams\n| summarize d=(max(TimeGenerated) - min(TimeGenerated)) by tostring(runId), bin(TimeGenerated, 1d)\n| extend [\"duration, s\"]=(todecimal(d)/10000000)\n| render areachart \n\n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "FrameControlChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "value": "StackedArea",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "value": {
-                    "xAxis": {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
-                    },
-                    "yAxis": [
-                      {
-                        "name": "duration, s",
-                        "type": "decimal"
-                      }
-                    ],
-                    "splitBy": [
-                      {
-                        "name": "runId",
-                        "type": "string"
-                      }
-                    ],
-                    "aggregation": "Sum"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "value": {
-                    "isEnabled": true,
-                    "position": "Bottom"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {},
-              "partHeader": {
-                "title": "Jobs Duration",
-                "subtitle": ""
-              }
-            }
-          },
-          "4": {
-            "position": {
-              "x": 0,
-              "y": 11,
-              "colSpan": 8,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "7d4b3833-26f1-4fe3-a352-c9e422a6a32b",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P3D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 1m)\n| render barchart \n\n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "FrameControlChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "value": "StackedColumn",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "value": {
-                    "xAxis": {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
-                    },
-                    "yAxis": [
-                      {
-                        "name": "Errors",
-                        "type": "long"
-                      }
-                    ],
-                    "splitBy": [],
-                    "aggregation": "Sum"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "value": {
-                    "isEnabled": true,
-                    "position": "Bottom"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "Query": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render columnchart  \n\n"
-                }
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
               },
-              "partHeader": {
-                "title": "Clusters",
-                "subtitle": ""
-              }
-            }
-          },
-          "5": {
-            "position": {
-              "x": 8,
-              "y": 11,
-              "colSpan": 8,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksJobs \\n| extend r=parse_json(Response)\\n| extend [\\\"Status Code\\\"]=r.statusCode\\n| extend [\\\"Error Message\\\"]=r.errorMessage\\n| where [\\\"Status Code\\\"] != 200\\n| summarize Errors=count() by bin(TimeGenerated, 5m)\\n| render barchart\",\"size\":1,\"title\":\"Jobs\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"graphSettings\":{\"type\":0},\"chartSettings\":{\"xAxis\":\"TimeGenerated\",\"yAxis\":[\"Errors\"],\"ySettings\":{\"numberFormatSettings\":{\"unit\":17,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
                   },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "12ffc4e3-6d4d-4b27-8e61-2b2afc8f550c",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P3D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| where isnotempty([\"Status Code\"])\n| summarize count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "FrameControlChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "value": "StackedColumn",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "value": {
-                    "xAxis": {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
                     },
-                    "yAxis": [
-                      {
-                        "name": "count_",
-                        "type": "long"
-                      }
-                    ],
-                    "splitBy": [
-                      {
-                        "name": "Status Code",
-                        "type": "string"
-                      }
-                    ],
-                    "aggregation": "Sum"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "value": {
-                    "isEnabled": true,
-                    "position": "Bottom"
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {},
-              "partHeader": {
-                "title": "Clusters Group By Status Code",
-                "subtitle": ""
-              }
-            }
-          },
-          "6": {
-            "position": {
-              "x": 0,
-              "y": 15,
-              "colSpan": 16,
-              "rowSpan": 3
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "4267ad01-a950-4584-8951-9264f10b00a4",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P1D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksClusters \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend ClusterID=rp.clusterId\n| extend [\"Cluster State\"]=rp.clusterState\n| extend [\"Cluster Name\"]=rp.clusterName\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], [\"Cluster State\"], [\"Cluster Name\"]\n| render table \n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "AnalyticsGrid",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "GridColumnsWidth": {
-                    "Error Message": "627px"
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
                   }
-                }
+                },
+                "isOptional": true
               },
-              "partHeader": {
-                "title": "Clusters Error",
-                "subtitle": ""
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
               }
-            }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "2": {
+          "position": {
+            "x": 8,
+            "y": 1,
+            "colSpan": 8,
+            "rowSpan": 5
           },
-          "7": {
-            "position": {
-              "x": 0,
-              "y": 18,
-              "colSpan": 13,
-              "rowSpan": 4
-            },
-            "metadata": {
-              "inputs": [
-                {
-                  "name": "resourceTypeMode",
-                  "isOptional": true
-                },
-                {
-                  "name": "ComponentId",
-                  "isOptional": true
-                },
-                {
-                  "name": "Scope",
-                  "value": {
-                    "resourceIds": [
-                      "${law_id}"
-                    ]
-                  },
-                  "isOptional": true
-                },
-                {
-                  "name": "PartId",
-                  "value": "9ee0d9fc-31d5-490e-9724-09ec38a0f738",
-                  "isOptional": true
-                },
-                {
-                  "name": "Version",
-                  "value": "2.0",
-                  "isOptional": true
-                },
-                {
-                  "name": "TimeRange",
-                  "value": "P1D",
-                  "isOptional": true
-                },
-                {
-                  "name": "DashboardId",
-                  "isOptional": true
-                },
-                {
-                  "name": "DraftRequestParameters",
-                  "isOptional": true
-                },
-                {
-                  "name": "Query",
-                  "value": "DatabricksAccounts \n| extend an=parse_json(Response)\n| extend [\"Status Code\"]=an.statusCode\n| extend [\"Error Message\"]=an.errorMessage\n| where [\"Status Code\"] >= 400\n| extend rp=parse_json(RequestParams)\n| extend Path=rp.path\n| extend UserID=rp.userId\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], SourceIPAddress, Path, UserID\n| render table \n",
-                  "isOptional": true
-                },
-                {
-                  "name": "ControlType",
-                  "value": "AnalyticsGrid",
-                  "isOptional": true
-                },
-                {
-                  "name": "SpecificChart",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartTitle",
-                  "value": "Analytics",
-                  "isOptional": true
-                },
-                {
-                  "name": "PartSubTitle",
-                  "value": "law-dpaf2-dev-eastus",
-                  "isOptional": true
-                },
-                {
-                  "name": "Dimensions",
-                  "isOptional": true
-                },
-                {
-                  "name": "LegendOptions",
-                  "isOptional": true
-                },
-                {
-                  "name": "IsQueryContainTimeRange",
-                  "value": false,
-                  "isOptional": true
-                }
-              ],
-              "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
-              "settings": {
-                "content": {
-                  "GridColumnsWidth": {
-                    "Error Message": "194px"
-                  },
-                  "Query": "DatabricksAccounts \n| extend an=parse_json(Response)\n| extend [\"Status Code\"]=an.statusCode\n| extend [\"Error Message\"]=an.errorMessage\n| where [\"Status Code\"] != 200\n| extend rp=parse_json(RequestParams)\n| extend Path=rp.path\n| extend UserID=rp.userId\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], SourceIPAddress, Path, UserID\n| render table \n\n"
-                }
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
               },
-              "partHeader": {
-                "title": "Accounts Error",
-                "subtitle": ""
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksJobs \\r\\n| extend r=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=r.statusCode\\r\\n| where isnotempty([\\\"Status Code\\\"])\\r\\n| summarize Count=count() by tostring([\\\"Status Code\\\"]), bin(TimeGenerated, 5m)\\r\\n| render columnchart \",\"size\":0,\"title\":\"Jobs Grouped By Status Code\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
               }
-            }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "3": {
+          "position": {
+            "x": 0,
+            "y": 6,
+            "colSpan": 16,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksJobs \\r\\n| extend r=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=r.statusCode\\r\\n| where isnotempty([\\\"Status Code\\\"])\\r\\n| extend [\\\"Error Message\\\"]=r.errorMessage\\r\\n| where [\\\"Status Code\\\"] != 200\\r\\n| extend rp=parse_json(RequestParams)\\r\\n| extend ClusterID=rp.clusterId\\r\\n| extend [\\\"Job State\\\"]=rp.clusterState\\r\\n| extend [\\\"Job Id\\\"]=rp.jobId\\r\\n| extend [\\\"Cluster Id\\\"]=rp.clusterId\\r\\n| project TimeGenerated, [\\\"Job Id\\\"], [\\\"Cluster Id\\\"], ActionName, [\\\"Status Code\\\"], [\\\"Error Message\\\"]\\r\\n| render table\",\"size\":1,\"title\":\"Jobs Error\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "4": {
+          "position": {
+            "x": 0,
+            "y": 10,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksJobs \\r\\n| where (ActionName contains \\\"runStart\\\") or (ActionName contains \\\"runFailed\\\") or (ActionName contains \\\"runSucceded\\\") \\r\\n| extend r=parse_json(RequestParams)\\r\\n| extend jobId=r.jobId, clusterId=r.clusterId, runId=r.runId\\r\\n| project TimeGenerated, ActionName, jobId, clusterId, runId, Response, RequestParams\\r\\n| summarize d=(max(TimeGenerated) - min(TimeGenerated)) by tostring(runId)\\r\\n| extend [\\\"Duration, s\\\"]=(todecimal(d)/10000000)\\r\\n| render columnchart \\r\\n| sort by [\\\"Duration, s\\\"] desc\",\"size\":0,\"aggregation\":3,\"title\":\"Jobs Duration\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"visualization\":\"categoricalbar\",\"chartSettings\":{\"xAxis\":\"runId\",\"yAxis\":[\"Duration, s\"],\"showMetrics\":false,\"showLegend\":true,\"xSettings\":{\"numberFormatSettings\":{\"unit\":0,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}},\"ySettings\":{\"numberFormatSettings\":{\"unit\":24,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2592000000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 30 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 30 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "5": {
+          "position": {
+            "x": 8,
+            "y": 10,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksJobs \\r\\n| where (ActionName contains \\\"runStart\\\") or (ActionName contains \\\"runFailed\\\") or (ActionName contains \\\"runSucceded\\\") \\r\\n| extend r=parse_json(RequestParams)\\r\\n| extend ['Job Id']=r.jobId, ['Cluster Id']=r.clusterId, ['Run Id']=r.runId\\r\\n| project TimeGenerated, ActionName, ['Job Id'], ['Cluster Id'], ['Run Id'], Response, RequestParams\\r\\n| summarize Duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(['Run Id']), tostring(['Job Id'])\\r\\n| sort by Duration desc\",\"size\":1,\"title\":\"Jobs Duration\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"gridSettings\":{\"formatters\":[{\"columnMatch\":\"Duration\",\"formatter\":0,\"numberFormat\":{\"unit\":0,\"options\":{\"style\":\"decimal\"}}}]}}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2592000000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 30 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 30 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "6": {
+          "position": {
+            "x": 0,
+            "y": 15,
+            "colSpan": 16,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"json\":\"## Clusters\\n---\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookTextPart"
+          }
+        },
+        "7": {
+          "position": {
+            "x": 0,
+            "y": 16,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksClusters \\r\\n| extend r=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=r.statusCode\\r\\n| where [\\\"Status Code\\\"] != 200\\r\\n| summarize Errors=count() by bin(TimeGenerated, 5m)\\r\\n| render columnchart\",\"size\":1,\"title\":\"Clusters\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "8": {
+          "position": {
+            "x": 8,
+            "y": 16,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksClusters \\r\\n| extend r=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=r.statusCode\\r\\n| where isnotempty([\\\"Status Code\\\"])\\r\\n| summarize Count=count() by tostring([\\\"Status Code\\\"]), bin(TimeGenerated, 5m)\\r\\n| render columnchart \",\"size\":0,\"title\":\"Clusters Grouped By Status Code\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "9": {
+          "position": {
+            "x": 0,
+            "y": 21,
+            "colSpan": 16,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksClusters \\r\\n| extend r=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=r.statusCode\\r\\n| extend [\\\"Error Message\\\"]=r.errorMessage\\r\\n| where [\\\"Status Code\\\"] != 200\\r\\n| extend rp=parse_json(RequestParams)\\r\\n| extend ClusterID=rp.clusterId\\r\\n| extend [\\\"Cluster State\\\"]=rp.clusterState\\r\\n| extend [\\\"Cluster Name\\\"]=rp.clusterName\\r\\n| project TimeGenerated, [\\\"Cluster Name\\\"], [\\\"Cluster State\\\"], ActionName, [\\\"Status Code\\\"], [\\\"Error Message\\\"]\\r\\n| render table \",\"size\":1,\"title\":\"Clusters Error\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "10": {
+          "position": {
+            "x": 0,
+            "y": 25,
+            "colSpan": 16,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"json\":\"## Accounts\\n---\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookTextPart"
+          }
+        },
+        "11": {
+          "position": {
+            "x": 0,
+            "y": 26,
+            "colSpan": 16,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksAccounts \\r\\n| extend an=parse_json(Response)\\r\\n| extend [\\\"Status Code\\\"]=an.statusCode\\r\\n| extend [\\\"Error Message\\\"]=an.errorMessage\\r\\n| where [\\\"Status Code\\\"] != 200\\r\\n| extend rp=parse_json(RequestParams)\\r\\n| extend Path=rp.path\\r\\n| extend UserID=rp.userId\\r\\n| project TimeGenerated, ActionName, [\\\"Status Code\\\"], [\\\"Error Message\\\"], SourceIPAddress, Path, UserID\\r\\n| render table\",\"size\":1,\"title\":\"Accounts Error\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "12": {
+          "position": {
+            "x": 0,
+            "y": 30,
+            "colSpan": 16,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"json\":\"## DatabricksSQL\\r\\n---\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookTextPart"
+          }
+        },
+        "13": {
+          "position": {
+            "x": 0,
+            "y": 31,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksDatabricksSQL\\r\\n| where isnotempty(Response)\\r\\n| extend ['Status Code'] = parse_json(Response).statusCode\\r\\n| where ['Status Code'] != 200\\r\\n| summarize Errors=count() by bin(TimeGenerated, 5m)\\r\\n| render columnchart\",\"size\":1,\"title\":\"DatabricksSQL \",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "14": {
+          "position": {
+            "x": 8,
+            "y": 31,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksDatabricksSQL\\r\\n| where isnotempty(Response)\\r\\n| extend ['Status Code'] = parse_json(Response).statusCode\\r\\n| summarize Count=count() by tostring(['Status Code']), bin(TimeGenerated, 5m)\\r\\n| render columnchart \",\"size\":0,\"title\":\"DatabricksSQL Grouped By Status Code\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "15": {
+          "position": {
+            "x": 0,
+            "y": 36,
+            "colSpan": 16,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksDatabricksSQL\\r\\n| where isnotempty(Response)\\r\\n| extend ['Status Code'] = parse_json(Response).statusCode\\r\\n| extend ['Error Message'] = parse_json(Response).errorMessage\\r\\n| extend ['Command Id'] = parse_json(RequestParams).commandId\\r\\n| where ['Status Code'] != 200\\r\\n| project TimeGenerated, ['Command Id'], ActionName, ['Status Code'], ['Error Message']\",\"size\":1,\"title\":\"DatabricksSQL Error\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2419200000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 28 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 28 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "16": {
+          "position": {
+            "x": 0,
+            "y": 40,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksDatabricksSQL \\r\\n| extend commandId = parse_json(RequestParams).commandId\\r\\n| extend commandText = parse_json(RequestParams).commandText\\r\\n| where isnotempty(commandId)\\r\\n| project TimeGenerated, commandId, ActionName, commandText\\r\\n| summarize duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(commandId)\\r\\n| extend [\\\"Duration, s\\\"]=(todecimal(duration)/10000000)\\r\\n| where ['Duration, s'] >= 5\\r\\n| render columnchart\\r\\n| sort by [\\\"Duration, s\\\"] desc\",\"size\":0,\"aggregation\":3,\"title\":\"DatabricksSQL Query Duration\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\",\"chartSettings\":{\"xAxis\":\"commandId\",\"yAxis\":[\"Duration, s\"],\"ySettings\":{\"numberFormatSettings\":{\"unit\":24,\"options\":{\"style\":\"decimal\",\"useGrouping\":true}}}}}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2592000000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 30 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 30 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
+          }
+        },
+        "17": {
+          "position": {
+            "x": 8,
+            "y": 40,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "${law_id}",
+                "isOptional": true
+              },
+              {
+                "name": "TimeContext",
+                "value": null,
+                "isOptional": true
+              },
+              {
+                "name": "ResourceIds",
+                "value": [
+                  "${law_id}"
+                ],
+                "isOptional": true
+              },
+              {
+                "name": "ConfigurationId",
+                "value": "${workbook_id}",
+                "isOptional": true
+              },
+              {
+                "name": "Type",
+                "value": "workbook",
+                "isOptional": true
+              },
+              {
+                "name": "GalleryResourceType",
+                "value": "microsoft.operationalinsights/workspaces",
+                "isOptional": true
+              },
+              {
+                "name": "PinName",
+                "value": "databricks",
+                "isOptional": true
+              },
+              {
+                "name": "StepSettings",
+                "value": "{\"version\":\"KqlItem/1.0\",\"query\":\"DatabricksDatabricksSQL \\r\\n| extend commandId = parse_json(RequestParams).commandId\\r\\n| extend commandText = parse_json(RequestParams).commandText\\r\\n| where isnotempty(commandId)\\r\\n| project TimeGenerated, commandId, ActionName, commandText\\r\\n| summarize duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(commandId)\\r\\n| extend [\\\"Duration, s\\\"]=(todecimal(duration)/10000000)\\r\\n| where ['Duration, s'] >= 5\\r\\n| project commandId, duration\\r\\n| sort by duration desc\",\"size\":1,\"title\":\"DatabricksSQL Query Duration\",\"timeContextFromParameter\":\"TimeRange\",\"queryType\":0,\"resourceType\":\"microsoft.operationalinsights/workspaces\"}",
+                "isOptional": true
+              },
+              {
+                "name": "ParameterValues",
+                "value": {
+                  "Resource": {
+                    "type": 5,
+                    "value": "${law_id}",
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "${law_id}",
+                    "displayName": "Log Analytics Workspace",
+                    "formattedValue": "${law_id}"
+                  },
+                  "TimeRange": {
+                    "type": 4,
+                    "value": {
+                      "durationMs": 2592000000
+                    },
+                    "isPending": false,
+                    "isWaiting": false,
+                    "isFailed": false,
+                    "isGlobal": false,
+                    "labelValue": "Last 30 days",
+                    "displayName": "Time Range",
+                    "formattedValue": "Last 30 days"
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Location",
+                "value": "westeurope",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/PinnedNotebookQueryPart"
           }
         }
       }
-    },
-
-    "metadata": {
-      "model": {
-        "timeRange": {
-          "value": {
-            "relative": {
-              "duration": 24,
-              "timeUnit": 1
-            }
-          },
-          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
         },
-        "filterLocale": {
-          "value": "en-us"
-        }
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "en-us"
       }
     }
-
-}
+  }
+} 
