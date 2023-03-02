@@ -58,8 +58,10 @@ No modules.
 | Name                                                                                                                                                    | Type     |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
 | [random_uuid.adf](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                                  | resource |
+| [random_uuid.databricks](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                           | resource |
 | [azurerm_application_insights_workbook.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template) | resource |
 | [azurerm_portal_dashboard.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                        | resource |
+| [azurerm_application_insights_workbook.databricks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template) | resource |
 | [azurerm_portal_dashboard.databricks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                 | resource |
 
 ## Inputs
@@ -79,6 +81,7 @@ No modules.
 | Name                                                                                                                | Description                                   |
 |---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
 | <a name="output_workbook_adf_id"></a> [workbook\_adf\_id](#output\_workbook\_adf\_id)                               | Azure Workbook ADF Template ID                |
+| <a name="output_workbook_databricks_id"></a> [workbook\_databricks\_id](#output\_workbook\_databricks\_id)          | Azure Workbook Databricks Template ID         |
 | <a name="output_dashboard_adf_id"></a> [dashboard\_adf\_id](#output\_dashboard\_adf\_id)                            | Azure Shared Dashboard ADF ID                 |
 | <a name="output_dashboard_databricks_id"></a> [dashboard\_databricks\_id](#output\_dashboard\_databricks\_id)       | Azure Shared Dashboard Databricks ID          |
 <!-- END_TF_DOCS -->

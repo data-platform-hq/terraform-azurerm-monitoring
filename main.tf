@@ -36,7 +36,7 @@ resource "azurerm_portal_dashboard" "adf" {
 resource "azurerm_application_insights_workbook" "databricks" {
   for_each = var.log_analytics_workspace_map
 
-  display_name        = "databricks-${var.project}-${var.env}-${var.location}1"
+  display_name        = "databricks-${var.project}-${var.env}-${var.location}"
   name                = random_uuid.databricks.result
   location            = var.location
   resource_group_name = var.resource_group
