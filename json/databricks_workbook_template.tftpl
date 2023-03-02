@@ -10,58 +10,6 @@
         ],
         "parameters": [
           {
-            "id": "ccd5adcd-8d59-4cfe-99ec-98075de2e253",
-            "version": "KqlParameterItem/1.0",
-            "name": "DefaultSubscription_Internal",
-            "type": 1,
-            "isRequired": true,
-            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| take 1\r\n| project subscriptionId",
-            "crossComponentResources": [
-              "value::selected"
-            ],
-            "isHiddenWhenLocked": true,
-            "queryType": 1,
-            "resourceType": "microsoft.resourcegraph/resources"
-          },
-          {
-            "id": "1ca69445-60fc-4806-b43d-ac7e6aad630a",
-            "version": "KqlParameterItem/1.0",
-            "name": "Subscription",
-            "type": 6,
-            "isRequired": true,
-            "query": "summarize by subscriptionId\r\n| project value = strcat(\"/subscriptions/\", subscriptionId), label = subscriptionId, selected = iff(subscriptionId =~ '{DefaultSubscription_Internal}', true, false)\r\n",
-            "crossComponentResources": [
-              "value::selected"
-            ],
-            "typeSettings": {
-              "additionalResourceOptions": []
-            },
-            "queryType": 1,
-            "resourceType": "microsoft.resourcegraph/resources"
-          },
-          {
-            "id": "e94aafa3-c5d9-4523-89f0-4e87aa754511",
-            "version": "KqlParameterItem/1.0",
-            "name": "Workspace",
-            "type": 5,
-            "isRequired": true,
-            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\n| project id",
-            "crossComponentResources": [
-              "{Subscription}"
-            ],
-            "value": "${law_id}",
-            "typeSettings": {
-              "resourceTypeFilter": {
-                "microsoft.operationalinsights/workspaces": true
-              },
-              "additionalResourceOptions": [
-                "value::1"
-              ]
-            },
-            "queryType": 1,
-            "resourceType": "microsoft.resourcegraph/resources"
-          },
-          {
             "id": "c4b69c01-2263-4ada-8d9c-43433b739ff3",
             "version": "KqlParameterItem/1.0",
             "name": "TimeRange",
