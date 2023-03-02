@@ -2,42 +2,122 @@
   "version": "Notebook/1.0",
   "items": [
     {
-      "type": 3,
+      "type": 9,
       "content": {
-        "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL\r\n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| extend metricsns=columnifexists(\"Properties_spark_metrics_namespace_s\",Properties_spark_app_id_s)\r\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\r\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\r\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by JobID=Job_ID_d, bin(TimeGenerated,  1m)\r\n|top 5 by Latency desc nulls last\r\n| render table ",
-        "size": 0,
-        "title": "Top 5 Slow Jobs",
-        "timeContext": {
-          "durationMs": 86400000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "TimeGenerated",
-              "formatter": 5
-            },
-            {
-              "columnMatch": "Latency",
-              "formatter": 0,
-              "numberFormat": {
-                "unit": 23,
-                "options": {
-                  "style": "decimal"
+        "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "value::selected"
+        ],
+        "parameters": [
+          {
+            "id": "c4b69c01-2263-4ada-8d9c-43433b739ff3",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000,
+                  "createdTime": "2018-08-06T23:52:38.870Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 900000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1800000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 3600000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 14400000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 43200000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 86400000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 172800000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 259200000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 604800000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2592000000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 5184000000,
+                  "createdTime": "2018-08-06T23:52:38.871Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
                 }
-              }
+              ],
+              "allowCustom": null
+            },
+            "value": {
+              "durationMs": 604800000
             }
-          ]
-        }
+          }
+        ],
+        "style": "above",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
       },
-      "name": "query - 0"
+      "name": "parameters - 1"
     },
     {
       "type": 1,
       "content": {
-        "json": "## New workbook\n---\n\nWelcome to your new workbook.  This area will display text formatted as markdown.\n\n\nWe've included a basic analytics query to get you started. Use the `Edit` button below each section to configure it or add more sections."
+        "json": "## Jobs\n---"
       },
       "name": "text - 2"
     },
@@ -45,236 +125,23 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL \n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\n| summarize max(Completion_Time_d), min(Submission_Time_d) by Job_ID_d\n| extend Latency=max_Completion_Time_d-min_Submission_Time_d\n| project Job=Job_ID_d, Latency\n| top 5 by Latency desc nulls last\n| render table ",
+        "query": "DatabricksJobs \n| extend r=parse_json(Response)\n| extend [\"Status Code\"]=r.statusCode\n| extend [\"Error Message\"]=r.errorMessage\n| where [\"Status Code\"] != 200\n| summarize Errors=count() by bin(TimeGenerated, 5m)\n| render barchart",
         "size": 1,
-        "title": "Top 5 Slow Jobs",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
+        "title": "Jobs",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "Latency",
-              "formatter": 0,
-              "numberFormat": {
-                "unit": 23,
-                "options": {
-                  "style": "decimal"
-                }
-              }
-            }
-          ]
-        }
-      },
-      "name": "query - 2",
-      "styleSettings": {
-        "showBorder": true
-      }
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL\r\n| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| project Job_ID_d, Task_Info_Host_s, Completion_Time_d, Submission_Time_d, Stage_ID_d, Stage_IDs_s, applicationId_s, applicationName_s, clusterName_s, clusterId_s, Properties_spark_app_id_s, TimeGenerated\r\n| summarize Latency=(max(Completion_Time_d) - min(Submission_Time_d)) by Job_ID_d, bin(TimeGenerated,  1m)\r\n| summarize ['25 percentile']=percentiles(Latency, 25), ['50 percentile']=percentiles(Latency, 50), ['75 percentile']=percentiles(Latency, 75), ['90 percentile']=percentiles(Latency, 90)  by bin(TimeGenerated,  1m)",
-        "size": 0,
-        "aggregation": 3,
-        "title": "Job Latency",
-        "timeContext": {
-          "durationMs": 2592000000
+        "graphSettings": {
+          "type": 0
         },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "visualization": "areachart",
-        "chartSettings": {
-          "ySettings": {
-            "numberFormatSettings": {
-              "unit": 23,
-              "options": {
-                "style": "decimal",
-                "useGrouping": true
-              }
-            }
-          }
-        }
-      },
-      "name": "query - 2"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL\r\n//| where  (Event_s  contains \"SparkListenerJobStart\") or (Event_s contains \"SparkListenerJobEnd\" and Job_Result_Result_s contains \"JobSucceeded\")\r\n| project Stage_Info_Completion_Time_d, Stage_Info_Submission_Time_d, Stage_ID_d,Stage_Info_Stage_Name_s, Stage_Info_Stage_ID_d, TimeGenerated\r\n| summarize Latency=(max(Stage_Info_Completion_Time_d) - min(Stage_Info_Submission_Time_d)) by Stage_Info_Stage_ID_d, bin(TimeGenerated,  1m)\r\n| summarize ['25 percentile']=percentiles(Latency, 25), ['50 percentile']=percentiles(Latency, 50), ['75 percentile']=percentiles(Latency, 75), ['90 percentile']=percentiles(Latency, 90)  by bin(TimeGenerated,  1m)\r\n\r\n",
-        "size": 0,
-        "aggregation": 3,
-        "title": "Stage Latency",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "visualization": "areachart",
-        "chartSettings": {
-          "ySettings": {
-            "numberFormatSettings": {
-              "unit": 23,
-              "options": {
-                "style": "decimal",
-                "useGrouping": true
-              }
-            }
-          }
-        }
-      },
-      "name": "query - 3"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL\r\n| project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s, Task_Info_Finish_Time_d, TimeGenerated\r\n| extend Latency = Task_Info_Finish_Time_d-Task_Info_Launch_Time_d\r\n| project Task=Task_Info_Task_ID_d, Latency\r\n| top 5 by Latency desc nulls last\r\n| render table \r\n",
-        "size": 0,
-        "title": "Top 5 Slow Tasks",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "Latency",
-              "formatter": 0,
-              "numberFormat": {
-                "unit": 23,
-                "options": {
-                  "style": "decimal"
-                }
-              }
-            }
-          ]
-        }
-      },
-      "name": "query - 4"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "let results=SparkListenerEvent_CL\r\n| where  Event_s  contains \"SparkListenerStageSubmitted\"\r\n| extend metricsns=columnifexists(\"Properties_spark_metrics_namespace_s\",Properties_spark_app_id_s)\r\n| extend apptag=iif(isnotempty(metricsns),metricsns,Properties_spark_app_id_s)\r\n| project Stage_Info_Stage_ID_d,apptag,TimeGenerated,Properties_spark_databricks_clusterUsageTags_clusterName_s\r\n| order by TimeGenerated asc  nulls last \r\n| join kind= inner (    SparkListenerEvent_CL\r\n    |  where Event_s contains \"SparkListenerStageCompleted\"  \r\n        | extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d) on Stage_Info_Stage_ID_d;\r\n        results\r\n| extend Latency=Stage_Info_Completion_Time_d - Stage_Info_Submission_Time_d \r\n| project Stage=Stage_Info_Stage_ID_d, Latency\r\n| top 5 by Latency desc nulls last\r\n| render table ",
-        "size": 0,
-        "title": "Top 5 Slow Stages",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "gridSettings": {
-          "formatters": [
-            {
-              "columnMatch": "Latency",
-              "formatter": 0,
-              "numberFormat": {
-                "unit": 23,
-                "options": {
-                  "style": "decimal"
-                }
-              }
-            }
-          ]
-        }
-      },
-      "name": "query - 5"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "SparkListenerEvent_CL\r\n| project Task_Info_Launch_Time_d,Stage_ID_d,Task_Info_Task_ID_d,Event_s, Task_Info_Finish_Time_d, TimeGenerated\r\n| extend TaskLatency = Task_Info_Finish_Time_d-Task_Info_Launch_Time_d\r\n| summarize percentiles(TaskLatency,25,50,75,90) by bin(TimeGenerated, 1m)\r\n| order by TimeGenerated asc nulls last",
-        "size": 0,
-        "aggregation": 3,
-        "title": "Task Latency",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "visualization": "areachart",
         "chartSettings": {
           "xAxis": "TimeGenerated",
-          "ySettings": {
-            "numberFormatSettings": {
-              "unit": 23,
-              "options": {
-                "style": "decimal",
-                "useGrouping": true
-              }
-            }
-          }
-        }
-      },
-      "name": "query - 6"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "//CPU Time Per Executor\nSparkMetric_CL\n| where name_s contains \"executor.cpuTime\"\n| extend sname = split(name_s, \".\")\n| extend executor=strcat(sname[0], \".\", sname[1])\n| project TimeGenerated, cpuTime=count_d / 100000\n| summarize ['AVG time']=avg(cpuTime), ['25 percentile']=percentile(cpuTime,25), ['50 percentile']=percentile(cpuTime,50), ['75 percentile']=percentile(cpuTime,75), ['90 percentile']=percentile(cpuTime,90) by bin(TimeGenerated,  1m)\n| order by TimeGenerated asc nulls last\n|render areachart\n\n",
-        "size": 0,
-        "aggregation": 3,
-        "title": "CPU Time Per Executor",
-        "color": "lightBlue",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "chartSettings": {
-          "xAxis": "TimeGenerated",
-          "ySettings": {
-            "numberFormatSettings": {
-              "unit": 23,
-              "options": {
-                "style": "decimal",
-                "useGrouping": true
-              }
-            }
-          }
-        }
-      },
-      "name": "query - 7"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "//Sum Task Execution Per Host\nSparkListenerEvent_CL\n| where Event_s contains \"taskend\" \n| extend taskDuration=Task_Info_Finish_Time_d-Task_Info_Launch_Time_d \n| summarize ['Sum Task Execution / Minute']=sum(taskDuration) by bin(TimeGenerated,  1m), Task_Info_Host_s\n| order by TimeGenerated asc nulls last\n\n",
-        "size": 0,
-        "aggregation": 3,
-        "title": "Sum of Success Task Execution Per Host",
-        "timeContext": {
-          "durationMs": 2592000000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces",
-        "visualization": "areachart",
-        "chartSettings": {
-          "xAxis": "TimeGenerated",
-          "showLegend": true,
-          "seriesLabelSettings": [
-            {
-              "seriesName": "10.1.4.4",
-              "color": "blue"
-            },
-            {
-              "seriesName": "10.1.4.6",
-              "color": "magenta"
-            }
+          "yAxis": [
+            "Errors"
           ],
           "ySettings": {
             "numberFormatSettings": {
-              "unit": 23,
+              "unit": 17,
               "options": {
                 "style": "decimal",
                 "useGrouping": true
@@ -283,10 +150,263 @@
           }
         }
       },
-      "name": "query - 8"
+      "name": "Jobs"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksJobs \r\n| extend r=parse_json(Response)\r\n| extend [\"Status Code\"]=r.statusCode\r\n| where isnotempty([\"Status Code\"])\r\n| summarize Count=count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\r\n| render columnchart ",
+        "size": 0,
+        "title": "Jobs Grouped By Status Code",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Jobs grouped by status code"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksJobs \r\n| extend r=parse_json(Response)\r\n| extend [\"Status Code\"]=r.statusCode\r\n| where isnotempty([\"Status Code\"])\r\n| extend [\"Error Message\"]=r.errorMessage\r\n| where [\"Status Code\"] != 200\r\n| extend rp=parse_json(RequestParams)\r\n| extend ClusterID=rp.clusterId\r\n| extend [\"Job State\"]=rp.clusterState\r\n| extend [\"Job Id\"]=rp.jobId\r\n| extend [\"Cluster Id\"]=rp.clusterId\r\n| project TimeGenerated, [\"Job Id\"], [\"Cluster Id\"], ActionName, [\"Status Code\"], [\"Error Message\"]\r\n| render table",
+        "size": 1,
+        "title": "Jobs Error",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Jobs error"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksJobs \r\n| where (ActionName contains \"runStart\") or (ActionName contains \"runFailed\") or (ActionName contains \"runSucceded\") \r\n| extend r=parse_json(RequestParams)\r\n| extend jobId=r.jobId, clusterId=r.clusterId, runId=r.runId\r\n| project TimeGenerated, ActionName, jobId, clusterId, runId, Response, RequestParams\r\n| summarize d=(max(TimeGenerated) - min(TimeGenerated)) by tostring(runId)\r\n| extend [\"Duration, s\"]=(todecimal(d)/10000000)\r\n| render columnchart \r\n| sort by [\"Duration, s\"] desc",
+        "size": 0,
+        "aggregation": 3,
+        "title": "Jobs Duration",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "categoricalbar",
+        "chartSettings": {
+          "xAxis": "runId",
+          "yAxis": [
+            "Duration, s"
+          ],
+          "showMetrics": false,
+          "showLegend": true,
+          "xSettings": {
+            "numberFormatSettings": {
+              "unit": 0,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          },
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 24,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "Jobs duration"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksJobs \r\n| where (ActionName contains \"runStart\") or (ActionName contains \"runFailed\") or (ActionName contains \"runSucceded\") \r\n| extend r=parse_json(RequestParams)\r\n| extend ['Job Id']=r.jobId, ['Cluster Id']=r.clusterId, ['Run Id']=r.runId\r\n| project TimeGenerated, ActionName, ['Job Id'], ['Cluster Id'], ['Run Id'], Response, RequestParams\r\n| summarize Duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(['Run Id']), tostring(['Job Id'])\r\n| sort by Duration desc",
+        "size": 1,
+        "title": "Jobs Duration",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Duration",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 0,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": "Jobs duration"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Clusters\n---"
+      },
+      "name": "Clusters"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksClusters \r\n| extend r=parse_json(Response)\r\n| extend [\"Status Code\"]=r.statusCode\r\n| where [\"Status Code\"] != 200\r\n| summarize Errors=count() by bin(TimeGenerated, 5m)\r\n| render columnchart",
+        "size": 1,
+        "title": "Clusters",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Clusters"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksClusters \r\n| extend r=parse_json(Response)\r\n| extend [\"Status Code\"]=r.statusCode\r\n| where isnotempty([\"Status Code\"])\r\n| summarize Count=count() by tostring([\"Status Code\"]), bin(TimeGenerated, 5m)\r\n| render columnchart ",
+        "size": 0,
+        "title": "Clusters Grouped By Status Code",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Clusters grouped by status code"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksClusters \r\n| extend r=parse_json(Response)\r\n| extend [\"Status Code\"]=r.statusCode\r\n| extend [\"Error Message\"]=r.errorMessage\r\n| where [\"Status Code\"] != 200\r\n| extend rp=parse_json(RequestParams)\r\n| extend ClusterID=rp.clusterId\r\n| extend [\"Cluster State\"]=rp.clusterState\r\n| extend [\"Cluster Name\"]=rp.clusterName\r\n| project TimeGenerated, [\"Cluster Name\"], [\"Cluster State\"], ActionName, [\"Status Code\"], [\"Error Message\"]\r\n| render table ",
+        "size": 1,
+        "title": "Clusters Error",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Clusters error"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Accounts\n---"
+      },
+      "name": "Accounts"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksAccounts \r\n| extend an=parse_json(Response)\r\n| extend [\"Status Code\"]=an.statusCode\r\n| extend [\"Error Message\"]=an.errorMessage\r\n| where [\"Status Code\"] != 200\r\n| extend rp=parse_json(RequestParams)\r\n| extend Path=rp.path\r\n| extend UserID=rp.userId\r\n| project TimeGenerated, ActionName, [\"Status Code\"], [\"Error Message\"], SourceIPAddress, Path, UserID\r\n| render table",
+        "size": 1,
+        "title": "Accounts Error",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Accounts error"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## DatabricksSQL\r\n---"
+      },
+      "name": "DatabricksSQL"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksDatabricksSQL \r\n| extend commandId = parse_json(RequestParams).commandId\r\n| extend commandText = parse_json(RequestParams).commandText\r\n| where isnotempty(commandId)\r\n| project TimeGenerated, commandId, ActionName, commandText\r\n| summarize duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(commandId)\r\n| extend [\"Duration, s\"]=(todecimal(duration)/10000000)\r\n| where ['Duration, s'] >= 5\r\n| render columnchart\r\n| sort by [\"Duration, s\"] desc",
+        "size": 0,
+        "aggregation": 3,
+        "title": "DatabricksSQL Query Duration",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "chartSettings": {
+          "xAxis": "commandId",
+          "yAxis": [
+            "Duration, s"
+          ],
+          "ySettings": {
+            "numberFormatSettings": {
+              "unit": 24,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            }
+          }
+        }
+      },
+      "name": "DatabricksSQL query duration"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksDatabricksSQL \r\n| extend commandId = parse_json(RequestParams).commandId\r\n| extend commandText = parse_json(RequestParams).commandText\r\n| where isnotempty(commandId)\r\n| project TimeGenerated, commandId, ActionName, commandText\r\n| summarize duration=(max(TimeGenerated) - min(TimeGenerated)) by tostring(commandId)\r\n| extend [\"Duration, s\"]=(todecimal(duration)/10000000)\r\n| where ['Duration, s'] >= 5\r\n| project commandId, duration\r\n| sort by duration desc",
+        "size": 1,
+        "title": "DatabricksSQL Query Duration",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "DatabricksSQL query duration"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksDatabricksSQL\r\n| where isnotempty(Response)\r\n| extend ['Status Code'] = parse_json(Response).statusCode\r\n| where ['Status Code'] != 200\r\n| summarize Errors=count() by bin(TimeGenerated, 5m)\r\n| render columnchart",
+        "size": 1,
+        "title": "DatabricksSQL ",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "DatabricksSQL "
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksDatabricksSQL\r\n| where isnotempty(Response)\r\n| extend ['Status Code'] = parse_json(Response).statusCode\r\n| summarize Count=count() by tostring(['Status Code']), bin(TimeGenerated, 5m)\r\n| render columnchart ",
+        "size": 0,
+        "title": "DatabricksSQL Grouped By Status Code",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "DatabricksSQL grouped by status code"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "DatabricksDatabricksSQL\r\n| where isnotempty(Response)\r\n| extend ['Status Code'] = parse_json(Response).statusCode\r\n| extend ['Error Message'] = parse_json(Response).errorMessage\r\n| extend ['Command Id'] = parse_json(RequestParams).commandId\r\n| where ['Status Code'] != 200\r\n| project TimeGenerated, ['Command Id'], ActionName, ['Status Code'], ['Error Message']",
+        "size": 1,
+        "title": "DatabricksSQL Error",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "DatabricksSQL error"
     }
   ],
+  "defaultResourceIds": [
+    "Azure Monitor",
+    "${law_id}"
+  ],
   "fallbackResourceIds": [
+    "Azure Monitor",
     "${law_id}"
   ],
   "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
