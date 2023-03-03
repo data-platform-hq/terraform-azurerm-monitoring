@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.0.1...v1.1.0) (2023-03-03)
+
+
+### Bug Fixes
+
+* chanched databricks workbook, dasboard ([7b163e8](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/7b163e8dcfd5185c87bfce751ff4b505289bd248))
+* changed databricks dasboard ([ccac7eb](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/ccac7ebbd8da30183af9ea2445ae36fb3863fe1f))
+* terraform fmt ([e6260d6](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/e6260d617ff04f29923bd3eabdb9e269f8e3998e))
+
+
+### Features
+
+* changed workbook ([38e99bb](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/38e99bbedc1d82b1f628267c08d45460778d1bf3))
+
 ## [1.0.1](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.0.0...v1.0.1) (2023-01-31)
 
 
