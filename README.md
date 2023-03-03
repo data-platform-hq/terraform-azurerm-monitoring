@@ -29,8 +29,8 @@ module "monitoring" {
   location                   = "eastus"
   tags                       = local.tags
   resource_group             = "example_rg"
-  azure_data_factory_id      = data.azurerm_data_factory.example.id
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.example.id
+  azure_data_factory_id      = { data.azurerm_data_factory.example.name = data.azurerm_data_factory.example.id }
+  log_analytics_workspace_id = { data.azurerm_log_analytics_workspace.example.name = data.azurerm_log_analytics_workspace.example.id }
 }
 ```
 <!-- BEGIN_TF_DOCS -->
