@@ -1,12 +1,16 @@
-resource "random_uuid" "adf" {}
+resource "random_uuid" "adf" {
+  for_each = var.adf_map
+}
 
-resource "random_uuid" "databricks" {}
+resource "random_uuid" "databricks" {
+  for_each = var.log_analytics_workspace_map
+}
 
 resource "azurerm_application_insights_workbook" "adf" {
   for_each = var.adf_map
 
   display_name        = "data-factory-${var.project}-${var.env}-${var.location}"
-  name                = random_uuid.adf.result
+  name                = random_uuid.adf[each.key].result
   location            = var.location
   resource_group_name = var.resource_group
   tags                = var.tags
@@ -37,7 +41,7 @@ resource "azurerm_application_insights_workbook" "databricks" {
   for_each = var.log_analytics_workspace_map
 
   display_name        = "databricks-${var.project}-${var.env}-${var.location}"
-  name                = random_uuid.databricks.result
+  name                = random_uuid.databricks[each.key].result
   location            = var.location
   resource_group_name = var.resource_group
   tags                = var.tags
