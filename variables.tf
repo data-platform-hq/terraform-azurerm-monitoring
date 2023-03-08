@@ -20,13 +20,13 @@ variable "location" {
 
 variable "custom_adf_workbook_name" {
   type        = string
-  description = "Specifies the name of Azure Data Factory Workbook as a UUID/GUID"
+  description = "Specifies the display name of Azure Data Factory Workbook"
   default     = null
 }
 
 variable "custom_databricks_workbook_name" {
   type        = string
-  description = "Specifies the name of Databricks Workbook as a UUID/GUID"
+  description = "Specifies the display name of Databricks Workbook"
   default     = null
 }
 
