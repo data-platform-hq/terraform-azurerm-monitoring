@@ -18,6 +18,30 @@ variable "location" {
   description = "Specifies the supported Azure location where the resource exists"
 }
 
+variable "custom_adf_workbook_name" {
+  type        = string
+  description = "Specifies the name of Azure Data Factory Workbook as a UUID/GUID"
+  default     = null
+}
+
+variable "custom_databricks_workbook_name" {
+  type        = string
+  description = "Specifies the name of Databricks Workbook as a UUID/GUID"
+  default     = null
+}
+
+variable "custom_adf_dashboard_name" {
+  type        = string
+  description = "Specifies the name of the Azure Data Factory Shared Dashboard"
+  default     = null
+}
+
+variable "custom_databricks_dashboard_name" {
+  type        = string
+  description = "Specifies the name of the Databricks Shared Dashboard"
+  default     = null
+}
+
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource"
