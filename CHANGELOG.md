@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.1.1...v1.2.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* updated description ([e426ecc](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/e426eccf20d4749687c87c126725a60f5b76648a))
+
+
+### Features
+
+* added custom names for resources ([ce3858e](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/ce3858ee3958980df5c4f1adb70dafbd43a595cb))
+
 ## [1.1.1](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.1.0...v1.1.1) (2023-03-03)
 
 
