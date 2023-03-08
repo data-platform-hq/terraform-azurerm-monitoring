@@ -55,35 +55,39 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                                                    | Type     |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
-| [random_uuid.adf](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                                  | resource |
-| [random_uuid.databricks](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                           | resource |
-| [azurerm_application_insights_workbook.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template) | resource |
-| [azurerm_portal_dashboard.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                        | resource |
+| Name                                                                                                                                                                       | Type     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| [random_uuid.adf](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                                                     | resource |
+| [random_uuid.databricks](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid)                                                              | resource |
+| [azurerm_application_insights_workbook.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template)        | resource |
+| [azurerm_portal_dashboard.adf](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                                           | resource |
 | [azurerm_application_insights_workbook.databricks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook_template) | resource |
-| [azurerm_portal_dashboard.databricks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                 | resource |
+| [azurerm_portal_dashboard.databricks](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/portal_dashboard)                                    | resource |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_project"></a> [project](#input\_project) | Project name | `string` | n/a | yes |
-| <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
-| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | The name of the resource group in which resources is created | `string` | n/a | yes |
-| <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resource exists | `string` | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource | `map(string)` | {} | no |
-| <a name="input_adf_map"></a> [adf\_map](#input\_adf\_map) | Azure Data Factory name to id map | `map(string)` | {} | no |
-| <a name="input_log_analytics_workspace_map"></a> [log\_analytics\_workspace\_map](#input\_log\_analytics\_workspace\_map) | Azure Log Analytics name to id map | `map(string)` | {} | no |
+| Name                                                                                                                                     | Description                                                      | Type          | Default | Required |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------- | ------- | :------: |
+| <a name="input_project"></a> [project](#input\_project)                                                                                  | Project name                                                     | `string`      | n/a     |   yes    |
+| <a name="input_env"></a> [env](#input\_env)                                                                                              | Environment name                                                 | `string`      | n/a     |   yes    |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group)                                                           | The name of the resource group in which resources is created     | `string`      | n/a     |   yes    |
+| <a name="input_location"></a> [location](#input\_location)                                                                               | Specifies the supported Azure location where the resource exists | `string`      | n/a     |   yes    |
+| <a name="input_custom_adf_workbook_name"></a> [custom\_adf\_workbook\_name](#input\_custom\_adf\_workbook\_name)                         | Specifies the display name of Azure Data Factory Workbook| `string`      | `null`  |    no    |
+| <a name="input_custom_databricks_workbook_name"></a> [custom\_databricks\_workbook\_name](#input\_custom\_databricks\_workbook\_name)    | Specifies the display name of Databricks Workbook         | `string`      | `null`  |    no    |
+| <a name="input_custom_adf_dashboard_name"></a> [custom\_adf\_dashboard\_name](#input\_custom\_adf\_dashboard\_name)                      | Specifies the name of the Azure Data Factory Shared Dashboard    | `string`      | `null`  |    no    |
+| <a name="input_custom_databricks_dashboard_name"></a> [custom\_databricks\_dashboard\_name](#input\_custom\_databricks\_dashboard\_name) | Specifies the name of the Databricks Shared Dashboard            | `string`      | `null`  |    no    |
+| <a name="input_tags"></a> [tags](#input\_tags)                                                                                           | A mapping of tags to assign to the resource                      | `map(string)` | {}      |    no    |
+| <a name="input_adf_map"></a> [adf\_map](#input\_adf\_map)                                                                                | Azure Data Factory name to id map                                | `map(string)` | {}      |    no    |
+| <a name="input_log_analytics_workspace_map"></a> [log\_analytics\_workspace\_map](#input\_log\_analytics\_workspace\_map)                | Azure Log Analytics name to id map                               | `map(string)` | {}      |    no    |
 
 ## Outputs
 
-| Name                                                                                                                | Description                                   |
-|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| <a name="output_workbook_adf_id"></a> [workbook\_adf\_id](#output\_workbook\_adf\_id)                               | Azure Workbook ADF Template ID                |
-| <a name="output_workbook_databricks_id"></a> [workbook\_databricks\_id](#output\_workbook\_databricks\_id)          | Azure Workbook Databricks Template ID         |
-| <a name="output_dashboard_adf_id"></a> [dashboard\_adf\_id](#output\_dashboard\_adf\_id)                            | Azure Shared Dashboard ADF ID                 |
-| <a name="output_dashboard_databricks_id"></a> [dashboard\_databricks\_id](#output\_dashboard\_databricks\_id)       | Azure Shared Dashboard Databricks ID          |
+| Name                                                                                                          | Description                           |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| <a name="output_workbook_adf_id"></a> [workbook\_adf\_id](#output\_workbook\_adf\_id)                         | Azure Workbook ADF Template ID        |
+| <a name="output_workbook_databricks_id"></a> [workbook\_databricks\_id](#output\_workbook\_databricks\_id)    | Azure Workbook Databricks Template ID |
+| <a name="output_dashboard_adf_id"></a> [dashboard\_adf\_id](#output\_dashboard\_adf\_id)                      | Azure Shared Dashboard ADF ID         |
+| <a name="output_dashboard_databricks_id"></a> [dashboard\_databricks\_id](#output\_dashboard\_databricks\_id) | Azure Shared Dashboard Databricks ID  |
 <!-- END_TF_DOCS -->
 
 ## License
