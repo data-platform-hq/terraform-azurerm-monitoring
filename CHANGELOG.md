@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.2.0...v1.3.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* replaced pre-commit repo docs creation/update by GH Actions ([2566ab4](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/2566ab4d86c49435c38e15687c534586e71f07e4))
+
+
+### Features
+
+* upgrade to AzureRM v4 ([fcffd02](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/fcffd0207a103e384c240e462d9c314fb6416eea))
+
 # [1.2.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.1.1...v1.2.0) (2023-03-08)
 
 
