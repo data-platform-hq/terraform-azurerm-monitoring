@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.4.0...v1.5.0) (2026-07-17)
+
+
+### Features
+
+* update ci/cd ([fc1ab36](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/fc1ab369c2a9d8d925cf7998c20a3db182af1f3e))
+* update ci/cd ([158c0bd](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/158c0bd8349d32bb3403d84267f2e3b2108c1261))
+* update provider versions ([824f9d7](https://github.com/data-platform-hq/terraform-azurerm-monitoring/commit/824f9d7e2471b7268878531d926d4c06b4654210))
+
 # [1.4.0](https://github.com/data-platform-hq/terraform-azurerm-monitoring/compare/v1.3.0...v1.4.0) (2026-02-02)
 
 
